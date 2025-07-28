@@ -1,0 +1,2 @@
+# this runs after conda installs everything above
+Rscript -e "install.packages(c('tidyverse','rhandsontable'))"

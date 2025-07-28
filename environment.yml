@@ -1,0 +1,10 @@
+name: eda
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10        # for pandas and Excel work
+  - r-essentials       # includes IRKernel and popular R packages
+  - pandas
+  - openpyxl           # read and write .xlsx files
+  - matplotlib         # for any Python plots
+  - jupyterlab
