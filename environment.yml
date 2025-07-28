@@ -1,10 +1,16 @@
 name: eda
 channels:
   - conda-forge
+  - defaults
 dependencies:
-  - python=3.10        # for pandas and Excel work
-  - r-essentials       # includes IRKernel and popular R packages
+  - python=3.10
   - pandas
-  - openpyxl           # read and write .xlsx files
-  - matplotlib         # for any Python plots
+  - openpyxl
+  - matplotlib
   - jupyterlab
+
+  # R and RStudio dependencies
+  - r-base            # pulls in R
+  - r-essentials      # IRKernel + core tidyverse
+  - r-tidyverse       # guarantees you have ggplot2, dplyr, etc
+  - r-rhandsontable   # spreadsheet widget for R
