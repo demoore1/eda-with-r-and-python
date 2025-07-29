@@ -3,16 +3,16 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  # Python
   - python=3.10
   - pandas
   - openpyxl
   - matplotlib
   - jupyterlab
+  - rpy2
 
-  # R and RStudio dependencies
-  - r-base            # pulls in R
-  - r-essentials      # IRKernel + core tidyverse
-  - r-tidyverse       # guarantees you have ggplot2, dplyr, etc
-  - r-rhandsontable   # spreadsheet widget for R
-
-conda install -c conda-forge rpy2
+  # R
+  - r-base
+  - r-essentials
+  - r-tidyverse
+  - r-rhandsontable
