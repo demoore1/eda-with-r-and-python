@@ -14,3 +14,5 @@ dependencies:
   - r-essentials      # IRKernel + core tidyverse
   - r-tidyverse       # guarantees you have ggplot2, dplyr, etc
   - r-rhandsontable   # spreadsheet widget for R
+
+conda install -c conda-forge rpy2
