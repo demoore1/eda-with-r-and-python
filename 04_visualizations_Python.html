@@ -1,0 +1,1308 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>04: Visualizations &#8212; Exploratory Data Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '04_visualizations_Python';</script>
+    <link rel="icon" href="_static/IDA-Logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="04: Visualizations" href="04_visualizations_R.html" />
+    <link rel="prev" title="03: Summary Statistics" href="03_summary_statistics_R.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/IDA-Logo.png" class="logo__image only-light" alt="Exploratory Data Analysis - Home"/>
+    <script>document.write(`<img src="_static/IDA-Logo.png" class="logo__image only-dark" alt="Exploratory Data Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Exploratory Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">You’ve Finished Exploratory Data Analysis!</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/demoore1/eda-with-r-and-python/main?urlpath=lab/tree/course-book/04_visualizations_Python.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/demoore1/eda-with-r-and-python" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/demoore1/eda-with-r-and-python/issues/new?title=Issue%20on%20page%20%2F04_visualizations_Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/04_visualizations_Python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>04: Visualizations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">04: Visualizations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-key-charts">Creating Key Charts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">1. Histogram</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-of-raw-scores">Histogram of Raw Scores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-matplotlib-pyplot-as-plt"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-seaborn-as-sns"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-figure"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-histplot-df-rawscore-binwidth-2-edgecolor-black"><code class="docutils literal notranslate"><span class="pre">sns.histplot(df["RawScore"],</span> <span class="pre">binwidth=2,</span> <span class="pre">edgecolor="black")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-histogram-of-raw-scores-plt-xlabel-rawscore-plt-ylabel-count"><code class="docutils literal notranslate"><span class="pre">plt.title("Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores")</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.xlabel("RawScore")</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.ylabel("Count")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-show"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-chart">Interpreting the Chart</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">2. Box Plot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-of-raw-scores">Box Plot of Raw Scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-boxplot-y-df-rawscore-color-lightgreen"><code class="docutils literal notranslate"><span class="pre">sns.boxplot(y</span> <span class="pre">=</span> <span class="pre">df["RawScore"],</span> <span class="pre">color="lightgreen")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-box-plot-of-raw-scores"><code class="docutils literal notranslate"><span class="pre">plt.title("Box</span> <span class="pre">Plot</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-ylabel-rawscore"><code class="docutils literal notranslate"><span class="pre">plt.ylabel("RawScore")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">plt.show()</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-plot">Interpreting the plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-pandas-as-pd"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-pd-read-csv-data-compas-sample-new-csv"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv("../data/compas_sample_new.csv")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-scatterplot-x-df-age-y-df-rawscore-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">sns.scatterplot(x</span> <span class="pre">=</span> <span class="pre">df["Age"],</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">df["RawScore"],</span> <span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-scatter-age-vs-rawscore"><code class="docutils literal notranslate"><span class="pre">plt.title("Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-xlabel-age-years"><code class="docutils literal notranslate"><span class="pre">plt.xlabel("Age</span> <span class="pre">(years)")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><code class="docutils literal notranslate"><span class="pre">plt.ylabel("RawScore")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Interpreting the Plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see">What you’ll see</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">Heatmap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-figure-figsize-10-8"><code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(10,</span> <span class="pre">8))</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-heatmap-corr-mat-annot-true-fmt-2f-cmap-coolwarm-cbar-kws-label-correlation"><code class="docutils literal notranslate"><span class="pre">sns.heatmap(corr_mat,</span> <span class="pre">annot=True,</span> <span class="pre">fmt=".2f",</span> <span class="pre">cmap="coolwarm",</span> <span class="pre">cbar_kws={"label":</span> <span class="pre">"Correlation"})</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-correlation-heatmap-of-numeric-variables"><code class="docutils literal notranslate"><span class="pre">plt.title("Correlation</span> <span class="pre">Heatmap</span> <span class="pre">of</span> <span class="pre">Numeric</span> <span class="pre">Variables")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-xticks-rotation-45-ha-right-and-plt-yticks-rotation-0"><code class="docutils literal notranslate"><span class="pre">plt.xticks(rotation=45,</span> <span class="pre">ha="right")</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.yticks(rotation=0)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-tight-layout"><code class="docutils literal notranslate"><span class="pre">plt.tight_layout()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Interpreting the chart</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-matrix">Scatterplot Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">What you’ll see</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#youre-all-set">🎉 You’re All Set!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-final-thoughts">Next Step: Final Thoughts</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><section class="tex2jax_ignore mathjax_ignore" id="visualizations">
+<h1>04: Visualizations<a class="headerlink" href="#visualizations" title="Link to this heading">#</a></h1>
+<section id="objective">
+<h2>Objective:<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
+<p>In this lesson, you will learn how to create and read simple visual charts that turn raw numbers into clear pictures.</p>
+<table width="100%">
+  <tr>
+    <td style="vertical-align: top; text-align: left; width: 60%; padding-right: 20px;"> </br> </br></br> </br></br>
+    <strong>You'll Build:</strong>
+      <ol style="font-size: 18px; line-height: 1.4;">
+        <li><strong>Histograms:</strong> to see how often different scores occur  </li>
+        <li><strong>Box plots:</strong> to spot unusually high or low values and compare groups  </li>
+        <li><strong>Scatter plots:</strong> to see if two measurements move together (for example, Age vs.  Recidivism Score) </li>
+        <li><strong>Heatmaps:</strong> to quickly identify which pairs of variables tend to rise and fall in sync  </li>
+      </ol>
+    </td>
+    <td style="vertical-align: top; text-align: left; width: 40%;">
+   <!-- relative path to visualizations.png -->
+      <img src="../slides/visualizations.png" alt="data vis" width="1000" />
+    </td>
+  </tr>
+</table>
+<section id="by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">
+<h3>By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.<a class="headerlink" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before" title="Link to this heading">#</a></h3>
+<hr class="docutils" />
+<audio controls src="../audio/Visualization.m4a"></section>
+<hr class="docutils" />
+<section id="creating-key-charts">
+<h3>Creating Key Charts<a class="headerlink" href="#creating-key-charts" title="Link to this heading">#</a></h3>
+<p>In this lesson you’ll learn how to turn numbers into pictures. We’ll use four chart types—histograms, box plots, scatter plots, and heatmaps—to explore our recidivism dataset. Each section includes:</p>
+<ol class="arabic simple">
+<li><p><strong>What we’re doing</strong> in plain English</p></li>
+<li><p><strong>Python code</strong> to run</p></li>
+<li><p><strong>What you’ll see</strong> and <strong>what it means</strong></p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="histogram">
+<h2>1. Histogram<a class="headerlink" href="#histogram" title="Link to this heading">#</a></h2>
+<p><strong>What we’re doing:</strong><br />
+The first visualization we will explore is the histogram. Here we’ll draw bars that show how many people fall into each score range. This helps you see if scores cluster around a central value or spread out evenly.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">],</span> <span class="n">binwidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Raw Scores&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;RawScore&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ddbb5f2fefa156f9133d2a57a024895715a5fbe180dfd63b020282924b0ce4fb.png" src="_images/ddbb5f2fefa156f9133d2a57a024895715a5fbe180dfd63b020282924b0ce4fb.png" />
+</div>
+</div>
+<section id="histogram-of-raw-scores">
+<h3>Histogram of Raw Scores<a class="headerlink" href="#histogram-of-raw-scores" title="Link to this heading">#</a></h3>
+<p>We’ll walk through how to read the histogram you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify what each part of the Python code is doing and what the resulting chart tells you.</p>
+<hr class="docutils" />
+</section>
+<section id="import-matplotlib-pyplot-as-plt">
+<h3><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code><a class="headerlink" href="#import-matplotlib-pyplot-as-plt" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loads Matplotlib’s plotting functions under the name <code class="docutils literal notranslate"><span class="pre">plt</span></code></p></li>
+<li><p>Matplotlib is a core Python library for creating charts and graphs</p></li>
+</ul>
+</section>
+<section id="import-seaborn-as-sns">
+<h3><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code><a class="headerlink" href="#import-seaborn-as-sns" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loads Seaborn under the name <code class="docutils literal notranslate"><span class="pre">sns</span></code></p></li>
+<li><p>Seaborn builds on Matplotlib to make statistical plots easier and prettier</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="plt-figure">
+<h3><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code><a class="headerlink" href="#plt-figure" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Starts a fresh plotting area so your histogram isn’t drawn over any older charts</p></li>
+</ul>
+</section>
+<section id="sns-histplot-df-rawscore-binwidth-2-edgecolor-black">
+<h3><code class="docutils literal notranslate"><span class="pre">sns.histplot(df[&quot;RawScore&quot;],</span> <span class="pre">binwidth=2,</span> <span class="pre">edgecolor=&quot;black&quot;)</span></code><a class="headerlink" href="#sns-histplot-df-rawscore-binwidth-2-edgecolor-black" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Draws the bars for your histogram</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">binwidth=2</span></code></strong> groups scores into buckets of 2 points each</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">edgecolor=&quot;black&quot;</span></code></strong> adds a black border around each bar for clarity</p></li>
+</ul>
+</section>
+<section id="plt-title-histogram-of-raw-scores-plt-xlabel-rawscore-plt-ylabel-count">
+<h3><code class="docutils literal notranslate"><span class="pre">plt.title(&quot;Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores&quot;)</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.xlabel(&quot;RawScore&quot;)</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.ylabel(&quot;Count&quot;)</span></code><a class="headerlink" href="#plt-title-histogram-of-raw-scores-plt-xlabel-rawscore-plt-ylabel-count" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Adds a clear <strong>title</strong> so you know what the chart shows</p></li>
+<li><p>Labels the <strong>x-axis</strong> (<code class="docutils literal notranslate"><span class="pre">RawScore</span></code>) and <strong>y-axis</strong> (<code class="docutils literal notranslate"><span class="pre">Count</span></code>) so anyone can read the axes without guessing</p></li>
+</ul>
+</section>
+<section id="plt-show">
+<h3><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code><a class="headerlink" href="#plt-show" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Displays the completed chart on your screen</p></li>
+</ul>
+<hr class="docutils" />
+<p>By understanding each line, you’ll know exactly how your histogram is built and what it reveals about how often different RawScore values occur. Tall bars show common score ranges; long tails highlight rare, extreme values.</p>
+</section>
+<section id="interpreting-the-chart">
+<h3>Interpreting the Chart<a class="headerlink" href="#interpreting-the-chart" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Vertical bars</strong> represent how many individuals scored within each 2-point range.</p></li>
+<li><p><strong>Height of a bar</strong> = number of records in that score bracket.</p></li>
+<li><p>The <strong>tallest bar</strong> is the “peak,” showing the most common score range.</p></li>
+<li><p>The <strong>tails</strong> (short bars stretching left or right) show rare, extreme scores.</p></li>
+<li><p>If one tail is much longer, your data are <strong>skewed</strong> (more extreme values on that side).</p></li>
+</ul>
+<p>This visual helps you instantly see where most scores cluster and whether there are unusual low or high values you should investigate further.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="box-plot">
+<h2>2. Box Plot<a class="headerlink" href="#box-plot" title="Link to this heading">#</a></h2>
+<p><strong>What we’re doing:</strong></p>
+<ul class="simple">
+<li><p>Compute the 1st quartile (Q1, 25th percentile) and 3rd quartile (Q3, 75th percentile)</p></li>
+<li><p>Draw a box from Q1 to Q3 to show the middle 50% of scores (the interquartile range, IQR)</p></li>
+<li><p>Place a line inside the box at the median (50th percentile)</p></li>
+<li><p>Extend “whiskers” from the box to the smallest and largest scores within 1.5 × IQR</p></li>
+<li><p>Plot any scores beyond the whiskers as individual dots (outliers)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightgreen&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Box Plot of Raw Scores&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;RawScore&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c255190a00728af21d534eb479b371cb187d27627e4f52cb2c9cee6cb6d65a8a.png" src="_images/c255190a00728af21d534eb479b371cb187d27627e4f52cb2c9cee6cb6d65a8a.png" />
+</div>
+</div>
+<hr class="docutils" />
+<section id="box-plot-of-raw-scores">
+<h3>Box Plot of Raw Scores<a class="headerlink" href="#box-plot-of-raw-scores" title="Link to this heading">#</a></h3>
+<p>We’ll walk through how to read the box plot you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the Python code is doing and what the resulting chart tells you.</p>
+<section id="id1">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Starts a fresh plotting area so your box plot isn’t drawn on any previous charts.</p></li>
+</ul>
+</section>
+<section id="sns-boxplot-y-df-rawscore-color-lightgreen">
+<h4><code class="docutils literal notranslate"><span class="pre">sns.boxplot(y</span> <span class="pre">=</span> <span class="pre">df[&quot;RawScore&quot;],</span> <span class="pre">color=&quot;lightgreen&quot;)</span></code><a class="headerlink" href="#sns-boxplot-y-df-rawscore-color-lightgreen" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Draws a vertical box representing your <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> distribution:</p></li>
+<li><p>The <strong>box</strong> covers the middle 50% of scores (from the 25th to the 75th percentile).</p></li>
+<li><p>The <strong>line</strong> inside the box marks the median (the value that splits the data in half).</p></li>
+<li><p>The <strong>whiskers</strong> extend to the lowest and highest scores that aren’t extreme outliers.</p></li>
+<li><p>Any dots beyond the whiskers are <strong>outliers</strong>—scores that are unusually low or high.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">color=&quot;lightgreen&quot;</span></code></strong> fills the box with a light green shade.</p></li>
+</ul>
+</section>
+<section id="plt-title-box-plot-of-raw-scores">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.title(&quot;Box</span> <span class="pre">Plot</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores&quot;)</span></code><a class="headerlink" href="#plt-title-box-plot-of-raw-scores" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Adds a clear <strong>title</strong> so you know what the chart represents.</p></li>
+</ul>
+</section>
+<section id="plt-ylabel-rawscore">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.ylabel(&quot;RawScore&quot;)</span></code><a class="headerlink" href="#plt-ylabel-rawscore" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Labels the <strong><code class="docutils literal notranslate"><span class="pre">y-axis</span></code></strong> with <code class="docutils literal notranslate"><span class="pre">RawScore</span></code>.</p></li>
+<li><p>(No x-axis label is needed since there’s only one category.)</p></li>
+</ul>
+</section>
+<section id="id2">
+<h4>plt.show()<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Renders the chart on your screen.</p></li>
+</ul>
+</section>
+</section>
+<section id="interpreting-the-plot">
+<h3>Interpreting the plot<a class="headerlink" href="#interpreting-the-plot" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The <strong>height of the box</strong> shows how spread out the middle half of your scores are.</p></li>
+<li><p>A <strong>short box</strong> means most scores are close together; a tall box means they vary more.</p></li>
+<li><p>The <strong>line</strong> inside the box tells you the median score.</p></li>
+<li><p><strong>Whiskers</strong> reveal the typical low and high range of scores.</p></li>
+<li><p><strong>Outlier</strong> dots flag any unusually extreme values you may want to investigate further.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="scatter-plot">
+<h3>3. Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h3>
+<p><strong>What we’re doing</strong><br />
+We’ll draw one dot for each person in our dataset. The dot’s horizontal position shows their <strong>Age</strong>, and the vertical position shows their <strong>RawScore</strong>. This helps us see if older or younger people tend to score higher or lower.</p>
+<p><strong>Using a sample</strong><br />
+Plotting all 60,000+ data points would create a crowded chart and could actually obscure the trends we’re interested in. To keep the scatterplot clear and ensure any patterns stand out, we’ll use a random sample of 200 observations from the original dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_sample_new.csv&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>  
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">],</span> 
+  <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">],</span> 
+  <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span>  <span class="c1"># makes points semi-transparent to see overlapping dots</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Scatter: Age vs RawScore&quot;</span><span class="p">)</span>  
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Age (years)&quot;</span><span class="p">)</span>                
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;RawScore&quot;</span><span class="p">)</span>                   
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>                                
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_sample_new.csv&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>  
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>   <span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">],</span> 
+<span class="g g-Whitespace">      </span><span class="mi">8</span>   <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">],</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span>   <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.3</span>  <span class="c1"># makes points semi-transparent to see overlapping dots</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py:1026,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1014</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1022</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1023</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1024</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1026</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py:620,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">617</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">619</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">620</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py:1620,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1617</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py:1880,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1878</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1879</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1880</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1881</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1882</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1883</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1884</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1885</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1886</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1887</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1888</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1889</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1890</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1891</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\common.py:873,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">876</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">877</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/compas_sample_new.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="scatter-plot-of-age-vs-rawscore">
+<h3>Scatter Plot of Age vs RawScore<a class="headerlink" href="#scatter-plot-of-age-vs-rawscore" title="Link to this heading">#</a></h3>
+<p>We’ll walk through how to read the scatter plot you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the Python code is doing and what the resulting chart tells you.</p>
+<section id="id3">
+<h4><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code><a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Loads Matplotlib’s plotting functions under the name <code class="docutils literal notranslate"><span class="pre">plt</span></code>.</p></li>
+<li><p>Matplotlib is a core library for creating all kinds of charts in Python.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code><a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Loads Seaborn under the name <code class="docutils literal notranslate"><span class="pre">sns</span></code>.</p></li>
+<li><p>Seaborn builds on Matplotlib to make statistical plots easier and prettier.</p></li>
+</ul>
+</section>
+<section id="import-pandas-as-pd">
+<h4><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code><a class="headerlink" href="#import-pandas-as-pd" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Loads pandas under the name <code class="docutils literal notranslate"><span class="pre">pd</span></code>.</p></li>
+<li><p>pandas lets us read and manipulate tables of data (DataFrames).</p></li>
+</ul>
+</section>
+<section id="df-pd-read-csv-data-compas-sample-new-csv">
+<h4><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(&quot;../data/compas_sample_new.csv&quot;)</span></code><a class="headerlink" href="#df-pd-read-csv-data-compas-sample-new-csv" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Reads your CSV file into a DataFrame called <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
+<li><p>Now <code class="docutils literal notranslate"><span class="pre">df</span></code> holds all your sample rows and columns for plotting.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code><a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Starts a fresh plotting area so your scatter plot isn’t drawn over any previous charts.</p></li>
+</ul>
+</section>
+<section id="sns-scatterplot-x-df-age-y-df-rawscore-alpha-0-3">
+<h4><code class="docutils literal notranslate"><span class="pre">sns.scatterplot(x</span> <span class="pre">=</span> <span class="pre">df[&quot;Age&quot;],</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">df[&quot;RawScore&quot;],</span> <span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code><a class="headerlink" href="#sns-scatterplot-x-df-age-y-df-rawscore-alpha-0-3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">df[&quot;Age&quot;]</span></code></strong> maps the Age values to the horizontal axis.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">df[&quot;RawScore&quot;]</span></code></strong> maps the RawScore values to the vertical axis.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3</span></code></strong> makes each dot semi-transparent so you can see overlapping points more clearly.</p></li>
+</ul>
+</section>
+<section id="plt-title-scatter-age-vs-rawscore">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.title(&quot;Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore&quot;)</span></code><a class="headerlink" href="#plt-title-scatter-age-vs-rawscore" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Adds a clear <strong>title</strong> so you know this chart shows “Age vs RawScore.”</p></li>
+</ul>
+</section>
+<section id="plt-xlabel-age-years">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.xlabel(&quot;Age</span> <span class="pre">(years)&quot;)</span></code><a class="headerlink" href="#plt-xlabel-age-years" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Labels the <strong>x-axis</strong> with “Age (years).”</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.ylabel(&quot;RawScore&quot;)</span></code><a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Labels the <strong>y-axis</strong> with “RawScore.”</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code><a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Renders the completed chart on your screen.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h3>Interpreting the Plot<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You’ll see a <strong>cloud of dots</strong>, one dot for each person in the sample.</p></li>
+<li><p>If the cloud <strong>slopes upward</strong>, older individuals tend to have higher RawScores.</p></li>
+<li><p>If it <strong>slopes downward</strong>, older individuals tend to have lower RawScores.</p></li>
+<li><p>A <strong>flat</strong> cloud means there’s no obvious relationship between age and score.</p></li>
+<li><p><strong>Clusters</strong> of dots can reveal age groups with similar risk patterns.</p></li>
+<li><p><strong>Gaps</strong> may indicate age ranges that are under- or un-represented in the data.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="correlation-analysis">
+<h2>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Link to this heading">#</a></h2>
+<p>The last topic we will cover is correlation analysis.</p>
+<p><strong>What It Is</strong></p>
+<ul class="simple">
+<li><p>A way to see how two numeric variables move together.</p></li>
+<li><p>Scores range from <strong>–1</strong> (exactly opposite), through <strong>0</strong> (no relationship), to <strong>+1</strong> (move in perfect sync).</p></li>
+</ul>
+<p><strong>Why It Matters</strong></p>
+<ul class="simple">
+<li><p><strong>Find linked factors:</strong> know which measures rise and fall together (for example, higher RawScore often goes with higher DecileScore).</p></li>
+<li><p><strong>Avoid redundant inputs:</strong> if two variables behave almost identically, you only need one in your model.</p></li>
+<li><p><strong>Pick the right features:</strong> focus on variables that add unique value, rather than clutter.</p></li>
+</ul>
+<p><strong>Common Tools</strong></p>
+<ul class="simple">
+<li><p><strong>Correlation Matrix:</strong> a simple table listing the correlation score for every pair of variables.</p></li>
+<li><p><strong>Heatmap:</strong> the same table shown in color, so you can spot strong relationships at a glance.</p></li>
+<li><p><strong>Scatterplot Matrix:</strong> small scatter plots for each variable pair, letting you see the actual data points and check for non-linear patterns or outliers.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="correlation-matrix">
+<h2>Correlation Matrix<a class="headerlink" href="#correlation-matrix" title="Link to this heading">#</a></h2>
+<p>We’ll first create a <strong>correlation matrix</strong>, which is a table showing how strongly each numeric variable in our COMPAS data moves with every other. Values range from <strong>–1</strong> (perfect opposite) to <strong>+1</strong> (perfect sync), with <strong>0</strong> meaning no linear relationship.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># 1. Load your data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Keep only numeric columns</span>
+<span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Compute the correlation matrix</span>
+<span class="n">corr_mat</span> <span class="o">=</span> <span class="n">num_df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># 4. Display the matrix, rounded to two decimals</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">corr_mat</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="what-youll-see">
+<h3>What you’ll see<a class="headerlink" href="#what-youll-see" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A <strong>square table</strong> where each row and column is one numeric field (Age, RawScore, DecileScore, etc.).</p></li>
+<li><p>Each cell shows the correlation coefficient between that row’s variable and that column’s variable.</p></li>
+<li><p>Look for values near <strong>+1</strong> (strong positive link) or <strong>–1</strong> (strong negative link). Values near 0 mean little linear relationship.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="heatmap">
+<h3>Heatmap<a class="headerlink" href="#heatmap" title="Link to this heading">#</a></h3>
+<p><strong>What we’re doing</strong><br />
+We want to see how our key numeric variables (like Age, RawScore, DecileScore) move together. A correlation heatmap is a colored grid where each cell shows the strength of the relationship between two variables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Load the libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>                  <span class="c1"># for data handling</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>      <span class="c1"># for plotting</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>                <span class="c1"># for statistical visualizations</span>
+
+<span class="c1"># 2. Read in the filtered CSV</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Select only numeric columns</span>
+<span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4. Compute the correlation matrix</span>
+<span class="c1">#    Values range from -1 (perfect opposite) to +1 (perfect together), with 0 = no linear link</span>
+<span class="n">corr_mat</span> <span class="o">=</span> <span class="n">num_df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="c1"># 5. Draw the heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>          
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">corr_mat</span><span class="p">,</span> 
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>        <span class="c1"># show the correlation numbers in each cell</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span>         <span class="c1"># format numbers with two decimal places</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span>   <span class="c1"># blue-to-red color scale</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Correlation&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Correlation Heatmap of Numeric Variables&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># rotate labels so they don’t overlap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9b08064f0feb7ee7b6c67c68c7ddaf3a1be25db6e6b1a5922f68e8fb5bcb0199.png" src="_images/9b08064f0feb7ee7b6c67c68c7ddaf3a1be25db6e6b1a5922f68e8fb5bcb0199.png" />
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="correlation-heatmap">
+<h3>Correlation Heatmap<a class="headerlink" href="#correlation-heatmap" title="Link to this heading">#</a></h3>
+<p>We’ll walk through how to read the heatmap you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the Python code is doing and what the resulting chart tells you.</p>
+<section id="plt-figure-figsize-10-8">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(10,</span> <span class="pre">8))</span></code><a class="headerlink" href="#plt-figure-figsize-10-8" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Creates a blank drawing area 10 inches wide by 8 inches tall so your heatmap has room to display all labels and colors clearly.</p></li>
+</ul>
+</section>
+<section id="sns-heatmap-corr-mat-annot-true-fmt-2f-cmap-coolwarm-cbar-kws-label-correlation">
+<h4><code class="docutils literal notranslate"><span class="pre">sns.heatmap(corr_mat,</span> <span class="pre">annot=True,</span> <span class="pre">fmt=&quot;.2f&quot;,</span> <span class="pre">cmap=&quot;coolwarm&quot;,</span> <span class="pre">cbar_kws={&quot;label&quot;:</span> <span class="pre">&quot;Correlation&quot;})</span></code><a class="headerlink" href="#sns-heatmap-corr-mat-annot-true-fmt-2f-cmap-coolwarm-cbar-kws-label-correlation" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Turns your correlation matrix into a colored grid:</p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">corr_mat</span></code></strong>: the table of correlation values we computed earlier.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">annot=True</span></code></strong> writes each correlation number in its cell.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">fmt=&quot;.2f&quot;</span></code></strong> formats those numbers with two decimal places.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cmap=&quot;coolwarm&quot;</span></code></strong> colors low correlations blue and high correlations red.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cbar_kws={&quot;label&quot;:</span> <span class="pre">&quot;Correlation&quot;}</span></code></strong> adds a label to the color legend at the side.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="plt-title-correlation-heatmap-of-numeric-variables">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.title(&quot;Correlation</span> <span class="pre">Heatmap</span> <span class="pre">of</span> <span class="pre">Numeric</span> <span class="pre">Variables&quot;)</span></code><a class="headerlink" href="#plt-title-correlation-heatmap-of-numeric-variables" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Adds a clear <strong>title</strong> so you know you’re looking at a “Correlation Heatmap of Numeric Variables.”</p></li>
+</ul>
+</section>
+<section id="plt-xticks-rotation-45-ha-right-and-plt-yticks-rotation-0">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.xticks(rotation=45,</span> <span class="pre">ha=&quot;right&quot;)</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.yticks(rotation=0)</span></code><a class="headerlink" href="#plt-xticks-rotation-45-ha-right-and-plt-yticks-rotation-0" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Rotates the <strong>x-axis</strong> labels 45° and aligns them to the right so they don’t overlap.</p></li>
+<li><p>Keeps the <strong>y-axis</strong> labels horizontal for easy reading.</p></li>
+</ul>
+</section>
+<section id="plt-tight-layout">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.tight_layout()</span></code><a class="headerlink" href="#plt-tight-layout" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Adjusts padding automatically so labels and plot elements fit without being cut off.</p></li>
+</ul>
+</section>
+<section id="id9">
+<h4><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code><a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Displays the completed chart on your screen.</p></li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h3>Interpreting the chart<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>You’ll see a <strong>square grid</strong> with variable names along the top and left edges.</p></li>
+<li><p><strong>Color intensity</strong> shows how strongly each pair of variables moves together:</p>
+<ul>
+<li><p><strong>Bright red</strong> (near +1): strong positive correlation (they rise and fall together).</p></li>
+<li><p><strong>Bright blue</strong> (near –1): strong negative correlation (one goes up as the other goes down).</p></li>
+<li><p><strong>Pale or white</strong> (near 0): little or no linear relationship.</p></li>
+</ul>
+</li>
+<li><p><strong>Numbers</strong> in each cell give the exact correlation coefficient (e.g., <code class="docutils literal notranslate"><span class="pre">0.82</span></code>).</p></li>
+<li><p>Use this visual to spot which factors are linked, which move in opposite directions, and whether any pairs are nearly identical—important for deciding what to include in further analysis.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="scatterplot-matrix">
+<h2>Scatterplot Matrix<a class="headerlink" href="#scatterplot-matrix" title="Link to this heading">#</a></h2>
+<p><strong>What we’re doing</strong><br />
+Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each pair of numeric variables. This helps you see the actual data points and spot non-linear patterns or outliers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># 1. Load your data and numeric subset</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+<span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Draw the scatterplot matrix</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span>
+    <span class="n">num_df</span><span class="p">,</span>
+    <span class="n">diag_kind</span><span class="o">=</span><span class="s2">&quot;hist&quot;</span><span class="p">,</span>        <span class="c1"># show histograms along the diagonal</span>
+    <span class="n">plot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">},</span> <span class="c1"># make points semi-transparent</span>
+    <span class="n">corner</span><span class="o">=</span><span class="kc">True</span>              <span class="c1"># only lower triangle for clarity</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Scatterplot Matrix of Numeric Variables&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2f4a0b8b73b6a02ed73c1cfcf77d509432b8b64bd6d2af4c67c56f1a155a5c17.png" src="_images/2f4a0b8b73b6a02ed73c1cfcf77d509432b8b64bd6d2af4c67c56f1a155a5c17.png" />
+</div>
+</div>
+<section id="id11">
+<h3>What you’ll see<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>A <strong>grid of small scatter plots</strong><br />
+Each cell at row <em>i</em>, column <em>j</em> plots Variable <em>i</em> on the y-axis versus Variable <em>j</em> on the x-axis.</p></li>
+<li><p><strong>Diagonal histograms</strong><br />
+The diagonal cells show a histogram of each variable’s distribution.</p></li>
+<li><p><strong>Dense clouds</strong><br />
+Thick clusters of points mean many similar value pairs.</p></li>
+<li><p><strong>Gaps or tails</strong><br />
+Open spaces or extended tails highlight outliers or skew.</p></li>
+<li><p><strong>How to use it</strong></p>
+<ul>
+<li><p>Look for <strong>straight-line patterns</strong> to identify linked variables.</p></li>
+<li><p>Notice <strong>random scatter</strong> for variables with no clear relationship.</p></li>
+<li><p>Spot <strong>isolated points</strong> far from the main cloud to find extreme values.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="youre-all-set">
+<h1>🎉 You’re All Set!<a class="headerlink" href="#youre-all-set" title="Link to this heading">#</a></h1>
+<p>You’ve completed the <strong>Data Visualization</strong> module. You now know how to:</p>
+<ul class="simple">
+<li><p>Create histograms, box plots, scatter plots, and heatmaps</p></li>
+<li><p>Interpret each chart to uncover patterns, outliers, and relationships</p></li>
+<li><p>Use visual tools to guide your next analysis steps</p></li>
+</ul>
+<hr class="docutils" />
+<section id="next-step-final-thoughts">
+<h2>Next Step: Final Thoughts<a class="headerlink" href="#next-step-final-thoughts" title="Link to this heading">#</a></h2>
+<p>Head over to <strong><code class="docutils literal notranslate"><span class="pre">06_final_thoughts.ipynb</span></code></strong> to wrap up your <strong>Exploratory Data Analysis</strong> lesson. There, we’ll review key takeaways and discuss best practices for documenting and sharing your insights.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_summary_statistics_R.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">03: Summary Statistics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_visualizations_R.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">04: Visualizations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">04: Visualizations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-key-charts">Creating Key Charts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">1. Histogram</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-of-raw-scores">Histogram of Raw Scores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-matplotlib-pyplot-as-plt"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#import-seaborn-as-sns"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-figure"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-histplot-df-rawscore-binwidth-2-edgecolor-black"><code class="docutils literal notranslate"><span class="pre">sns.histplot(df["RawScore"],</span> <span class="pre">binwidth=2,</span> <span class="pre">edgecolor="black")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-histogram-of-raw-scores-plt-xlabel-rawscore-plt-ylabel-count"><code class="docutils literal notranslate"><span class="pre">plt.title("Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores")</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.xlabel("RawScore")</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.ylabel("Count")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-show"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-chart">Interpreting the Chart</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">2. Box Plot</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot-of-raw-scores">Box Plot of Raw Scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-boxplot-y-df-rawscore-color-lightgreen"><code class="docutils literal notranslate"><span class="pre">sns.boxplot(y</span> <span class="pre">=</span> <span class="pre">df["RawScore"],</span> <span class="pre">color="lightgreen")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-box-plot-of-raw-scores"><code class="docutils literal notranslate"><span class="pre">plt.title("Box</span> <span class="pre">Plot</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-ylabel-rawscore"><code class="docutils literal notranslate"><span class="pre">plt.ylabel("RawScore")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">plt.show()</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-plot">Interpreting the plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-pandas-as-pd"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-pd-read-csv-data-compas-sample-new-csv"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv("../data/compas_sample_new.csv")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-scatterplot-x-df-age-y-df-rawscore-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">sns.scatterplot(x</span> <span class="pre">=</span> <span class="pre">df["Age"],</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">df["RawScore"],</span> <span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-scatter-age-vs-rawscore"><code class="docutils literal notranslate"><span class="pre">plt.title("Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-xlabel-age-years"><code class="docutils literal notranslate"><span class="pre">plt.xlabel("Age</span> <span class="pre">(years)")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6"><code class="docutils literal notranslate"><span class="pre">plt.ylabel("RawScore")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Interpreting the Plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see">What you’ll see</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">Heatmap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-figure-figsize-10-8"><code class="docutils literal notranslate"><span class="pre">plt.figure(figsize=(10,</span> <span class="pre">8))</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-heatmap-corr-mat-annot-true-fmt-2f-cmap-coolwarm-cbar-kws-label-correlation"><code class="docutils literal notranslate"><span class="pre">sns.heatmap(corr_mat,</span> <span class="pre">annot=True,</span> <span class="pre">fmt=".2f",</span> <span class="pre">cmap="coolwarm",</span> <span class="pre">cbar_kws={"label":</span> <span class="pre">"Correlation"})</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-correlation-heatmap-of-numeric-variables"><code class="docutils literal notranslate"><span class="pre">plt.title("Correlation</span> <span class="pre">Heatmap</span> <span class="pre">of</span> <span class="pre">Numeric</span> <span class="pre">Variables")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-xticks-rotation-45-ha-right-and-plt-yticks-rotation-0"><code class="docutils literal notranslate"><span class="pre">plt.xticks(rotation=45,</span> <span class="pre">ha="right")</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.yticks(rotation=0)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-tight-layout"><code class="docutils literal notranslate"><span class="pre">plt.tight_layout()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9"><code class="docutils literal notranslate"><span class="pre">plt.show()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Interpreting the chart</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-matrix">Scatterplot Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">What you’ll see</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#youre-all-set">🎉 You’re All Set!</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-step-final-thoughts">Next Step: Final Thoughts</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By An Introduction for IDA Staff
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
