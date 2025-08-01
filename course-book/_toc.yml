@@ -2,7 +2,6 @@ format: jb-book
 root: index
 
 chapters:
-  - file: 01_introduction
   - file: 02_data_cleaning_Python
   - file: 02_data_cleaning_R
   - file: 03_summary_statistics_Python
