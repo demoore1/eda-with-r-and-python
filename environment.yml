@@ -5,12 +5,12 @@ channels:
 dependencies:
   # Python
   - python=3.10
+  - scikit-learn
   - pandas
-  - openpyxl
+  - numpy
   - matplotlib
   - jupyterlab
-  - rpy2
-
+  - jupyternotebook
   # R
   - r-base
   - r-essentials
