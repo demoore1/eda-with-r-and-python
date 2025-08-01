@@ -1,0 +1,1508 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>02: Data Cleaning &#8212; Exploratory Data Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '02_data_cleaning_Python';</script>
+    <link rel="icon" href="_static/IDA-Logo.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="02: Data Cleaning" href="02_data_cleaning_R.html" />
+    <link rel="prev" title="Exploratory Data Analysis" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/IDA-Logo.png" class="logo__image only-light" alt="Exploratory Data Analysis - Home"/>
+    <script>document.write(`<img src="_static/IDA-Logo.png" class="logo__image only-dark" alt="Exploratory Data Analysis - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Exploratory Data Analysis
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">You’ve Finished Exploratory Data Analysis!</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/demoore1/eda-with-r-and-python/main?urlpath=lab/tree/course-book/02_data_cleaning_Python.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/demoore1/eda-with-r-and-python" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/demoore1/eda-with-r-and-python/issues/new?title=Issue%20on%20page%20%2F02_data_cleaning_Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/02_data_cleaning_Python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>02: Data Cleaning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pandas-library">Loading the Pandas Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-quantify-missing-data">2.1 Identify &amp; Quantify Missing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-dataset-size-and-missing-data">Checking Dataset Size and Missing Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">2.2 Handle Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-missing-values">Counting Missing Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-handling-missing-values">Options for Handling Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#middlename-17-942-missing-values">MiddleName: 17,942 missing values</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scoretext-45-missing-values">ScoreText: 45 missing values</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#age-56-missing-values">Age: 56 missing values</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drop-mostly-empty-columns">Step 1: Drop Mostly Empty Columns</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-have">Now we have:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-correct-data-types">2.3 Validate &amp; Correct Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-5-standardize-normalize-key-variables">Step 2.5: Standardize &amp; Normalize Key Variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-our-transformed-data">Interpreting Our Transformed Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-each-column-is">What each column is</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-do-this">Why we do this</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-6-record-your-cleaning-steps">Step 2.6: Record Your Cleaning Steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-continue-in-python-or-switch-to-r">Next Steps: Continue in Python or Switch to R</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-cleaning">
+<h1>02: Data Cleaning<a class="headerlink" href="#data-cleaning" title="Link to this heading">#</a></h1>
+<p><strong>Objective:</strong> Identify and handle missing or invalid values, detect outliers, and standardize data for our recidivism dataset.</p>
+<p><strong>Key Steps:</strong></p>
+<table width="100%">
+  <tr>
+    <td style="vertical-align: top; text-align: left; width: 60%; padding-right: 20px;">
+      <ol style="font-size: 20px; line-height: 1.4;">
+        <li>Identify &amp; quantify missing data</li>
+        <li>Handle missing values (imputation, removal, flagging)</li>
+        <li>Validate &amp; correct data types</li>
+        <li>Detect &amp; treat outliers</li>
+        <li>Standardize &amp; normalize</li>
+        <li>Document transformations</li>
+      </ol>
+    </td>
+    <td style="vertical-align: top; text-align: left; width: 40%;">
+      <!-- relative path to cleaning.png -->
+      <img src="../slides/cleaning.png" alt="Data Cleaning Image" width="1000" />
+    </td>
+  </tr>
+</table>
+<hr class="docutils" />
+<audio controls src="../audio/Cleaning.m4a">
+<p>Now that we’ve laid out our data‑cleaning roadmap, let’s put it into practice with a real dataset. For the rest of this lesson, we’ll work with the <strong>COMPAS recidivism data</strong> (<code class="docutils literal notranslate"><span class="pre">compas‑scores‑raw.csv</span></code>), which contains demographic and risk‑assessment scores for individuals screened by the COMPAS tool.</p>
+<p>We’ll start by running through each cleaning step in <strong>Python</strong>, then you are encouraged to repeat the same process in <strong>R</strong> so you can see both workflows side by side.</p>
+<p>Now that we’ve laid out our data‑cleaning roadmap, let’s put it into practice with a real dataset. For the rest of this lesson, we’ll work with the <strong>COMPAS recidivism data</strong> (<code class="docutils literal notranslate"><span class="pre">compas‑scores‑raw.csv</span></code>), which contains demographic and risk‑assessment scores for individuals screened by the COMPAS tool.</p>
+<p>We’ll start by running through each cleaning step in <strong>Python</strong>, then you are encouraged to repeat the same process in <strong>R</strong> so you can see both workflows side by side.</p>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
+<p>Since this is your first time, you’ll need to download all of the little helper programs (called “packages”) we’ll use—just run one simple command to get them all at once:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_Python.txt
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># only run this block your first time doing this training.</span>
+
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>..<span class="se">\r</span>equirements_Python.txt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scikit-learn in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from -r ..\requirements_Python.txt (line 1)) (1.7.1)
+Requirement already satisfied: pandas in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from -r ..\requirements_Python.txt (line 2)) (2.3.1)
+Requirement already satisfied: numpy in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from -r ..\requirements_Python.txt (line 3)) (2.3.2)
+Requirement already satisfied: matplotlib in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from -r ..\requirements_Python.txt (line 4)) (3.10.3)
+Requirement already satisfied: jupyterlab in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from -r ..\requirements_Python.txt (line 5)) (4.4.5)
+Requirement already satisfied: scipy in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from -r ..\requirements_Python.txt (line 6)) (1.16.1)
+Requirement already satisfied: joblib&gt;=1.2.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from scikit-learn-&gt;-r ..\requirements_Python.txt (line 1)) (1.5.1)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from scikit-learn-&gt;-r ..\requirements_Python.txt (line 1)) (3.6.0)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from pandas-&gt;-r ..\requirements_Python.txt (line 2)) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from pandas-&gt;-r ..\requirements_Python.txt (line 2)) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from pandas-&gt;-r ..\requirements_Python.txt (line 2)) (2025.2)
+Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (4.59.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (1.4.8)
+Requirement already satisfied: packaging&gt;=20.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (25.0)
+Requirement already satisfied: pillow&gt;=8 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (11.3.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from matplotlib-&gt;-r ..\requirements_Python.txt (line 4)) (3.2.3)
+Requirement already satisfied: async-lru&gt;=1.0.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.0.5)
+Requirement already satisfied: httpx&gt;=0.25.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.28.1)
+Requirement already satisfied: ipykernel&gt;=6.5.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (6.30.0)
+Requirement already satisfied: jinja2&gt;=3.0.3 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.1.6)
+Requirement already satisfied: jupyter-core in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (5.8.1)
+Requirement already satisfied: jupyter-lsp&gt;=2.0.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.2.6)
+Requirement already satisfied: jupyter-server&lt;3,&gt;=2.4.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.16.0)
+Requirement already satisfied: jupyterlab-server&lt;3,&gt;=2.27.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.27.3)
+Requirement already satisfied: notebook-shim&gt;=0.2 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.2.4)
+Requirement already satisfied: setuptools&gt;=41.1.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (80.9.0)
+Requirement already satisfied: tornado&gt;=6.2.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (6.5.1)
+Requirement already satisfied: traitlets in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (5.14.3)
+Requirement already satisfied: anyio&gt;=3.1.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (4.9.0)
+Requirement already satisfied: argon2-cffi&gt;=21.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (25.1.0)
+Requirement already satisfied: jupyter-client&gt;=7.4.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (8.6.3)
+Requirement already satisfied: jupyter-events&gt;=0.11.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.12.0)
+Requirement already satisfied: jupyter-server-terminals&gt;=0.4.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.5.3)
+Requirement already satisfied: nbconvert&gt;=6.4.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (7.16.6)
+Requirement already satisfied: nbformat&gt;=5.3.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (5.10.4)
+Requirement already satisfied: overrides&gt;=5.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (7.7.0)
+Requirement already satisfied: prometheus-client&gt;=0.9 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.22.1)
+Requirement already satisfied: pywinpty&gt;=2.0.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.0.15)
+Requirement already satisfied: pyzmq&gt;=24 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (27.0.0)
+Requirement already satisfied: send2trash&gt;=1.8.2 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.8.3)
+Requirement already satisfied: terminado&gt;=0.8.3 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.18.1)
+Requirement already satisfied: websocket-client&gt;=1.7 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.8.0)
+Requirement already satisfied: babel&gt;=2.10 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.17.0)
+Requirement already satisfied: json5&gt;=0.9.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.12.0)
+Requirement already satisfied: jsonschema&gt;=4.18.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (4.25.0)
+Requirement already satisfied: requests&gt;=2.31 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.32.4)
+Requirement already satisfied: idna&gt;=2.8 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from anyio&gt;=3.1.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.10)
+Requirement already satisfied: sniffio&gt;=1.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from anyio&gt;=3.1.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.3.1)
+Requirement already satisfied: argon2-cffi-bindings in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (25.1.0)
+Requirement already satisfied: certifi in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2025.7.14)
+Requirement already satisfied: httpcore==1.* in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from httpx&gt;=0.25.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.0.9)
+Requirement already satisfied: h11&gt;=0.16 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from httpcore==1.*-&gt;httpx&gt;=0.25.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.16.0)
+Requirement already satisfied: comm&gt;=0.1.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.2.3)
+Requirement already satisfied: debugpy&gt;=1.6.5 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.8.15)
+Requirement already satisfied: ipython&gt;=7.23.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (9.4.0)
+Requirement already satisfied: matplotlib-inline&gt;=0.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.1.7)
+Requirement already satisfied: nest-asyncio&gt;=1.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.6.0)
+Requirement already satisfied: psutil&gt;=5.7 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (7.0.0)
+Requirement already satisfied: colorama in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.4.6)
+Requirement already satisfied: decorator in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (5.2.1)
+Requirement already satisfied: ipython-pygments-lexers in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.1.1)
+Requirement already satisfied: jedi&gt;=0.16 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.19.2)
+Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.0.51)
+Requirement already satisfied: pygments&gt;=2.4.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.19.2)
+Requirement already satisfied: stack_data in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.6.3)
+Requirement already satisfied: wcwidth in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.2.13)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jedi&gt;=0.16-&gt;ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.8.4)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jinja2&gt;=3.0.3-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.0.2)
+Requirement already satisfied: attrs&gt;=22.2.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (25.3.0)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2025.4.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.36.2)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema&gt;=4.18.0-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.26.0)
+Requirement already satisfied: platformdirs&gt;=2.5 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-core-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (4.3.8)
+Requirement already satisfied: pywin32&gt;=300 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-core-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (311)
+Requirement already satisfied: python-json-logger&gt;=2.0.4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.3.0)
+Requirement already satisfied: pyyaml&gt;=5.3 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (6.0.2)
+Requirement already satisfied: rfc3339-validator in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.1.4)
+Requirement already satisfied: rfc3986-validator&gt;=0.1.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.1.1)
+Requirement already satisfied: fqdn in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.5.1)
+Requirement already satisfied: isoduration in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (20.11.0)
+Requirement already satisfied: jsonpointer&gt;1.13 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.0.0)
+Requirement already satisfied: rfc3987-syntax&gt;=1.1.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.1.0)
+Requirement already satisfied: uri-template in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.3.0)
+Requirement already satisfied: webcolors&gt;=24.6.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (24.11.1)
+Requirement already satisfied: beautifulsoup4 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (4.13.4)
+Requirement already satisfied: bleach!=5.0.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from bleach[css]!=5.0.0-&gt;nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (6.2.0)
+Requirement already satisfied: defusedxml in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.7.1)
+Requirement already satisfied: jupyterlab-pygments in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.3.0)
+Requirement already satisfied: mistune&lt;4,&gt;=2.0.3 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.1.3)
+Requirement already satisfied: nbclient&gt;=0.5.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.10.2)
+Requirement already satisfied: pandocfilters&gt;=1.4.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.5.1)
+Requirement already satisfied: webencodings in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from bleach!=5.0.0-&gt;bleach[css]!=5.0.0-&gt;nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.5.1)
+Requirement already satisfied: tinycss2&lt;1.5,&gt;=1.1.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from bleach[css]!=5.0.0-&gt;nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.4.0)
+Requirement already satisfied: fastjsonschema&gt;=2.15 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from nbformat&gt;=5.3.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.21.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;-r ..\requirements_Python.txt (line 2)) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.4.2)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from requests&gt;=2.31-&gt;jupyterlab-server&lt;3,&gt;=2.27.1-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.5.0)
+Requirement already satisfied: lark&gt;=1.2.2 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from rfc3987-syntax&gt;=1.1.0-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.2.2)
+Requirement already satisfied: cffi&gt;=1.0.1 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.17.1)
+Requirement already satisfied: pycparser in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from cffi&gt;=1.0.1-&gt;argon2-cffi-bindings-&gt;argon2-cffi&gt;=21.1-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.22)
+Requirement already satisfied: soupsieve&gt;1.2 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from beautifulsoup4-&gt;nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.7)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from beautifulsoup4-&gt;nbconvert&gt;=6.4.4-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (4.14.1)
+Requirement already satisfied: arrow&gt;=0.15.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (1.3.0)
+Requirement already satisfied: types-python-dateutil&gt;=2.8.10 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from arrow&gt;=0.15.0-&gt;isoduration-&gt;jsonschema[format-nongpl]&gt;=4.18.0-&gt;jupyter-events&gt;=0.11.0-&gt;jupyter-server&lt;3,&gt;=2.4.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.9.0.20250708)
+Requirement already satisfied: executing&gt;=1.2.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from stack_data-&gt;ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (2.2.0)
+Requirement already satisfied: asttokens&gt;=2.1.0 in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from stack_data-&gt;ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (3.0.0)
+Requirement already satisfied: pure-eval in c:\users\demoore\appdata\local\programs\python\python313\lib\site-packages (from stack_data-&gt;ipython&gt;=7.23.1-&gt;ipykernel&gt;=6.5.0-&gt;jupyterlab-&gt;-r ..\requirements_Python.txt (line 5)) (0.2.3)
+</pre></div>
+</div>
+</div>
+</div>
+<section id="loading-the-pandas-library">
+<h3>Loading the Pandas Library<a class="headerlink" href="#loading-the-pandas-library" title="Link to this heading">#</a></h3>
+<p>Before we can work with our data in Python, we need to load the <strong>Pandas</strong> library. The line below does two things:</p>
+<ol class="arabic simple">
+<li><p><strong>Imports</strong> the Pandas module so its functions and classes become available.</p></li>
+<li><p><strong>Aliases</strong> it as <code class="docutils literal notranslate"><span class="pre">pd</span></code> so we can reference it concisely in our code.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identify-quantify-missing-data">
+<h3>2.1 Identify &amp; Quantify Missing Data<a class="headerlink" href="#identify-quantify-missing-data" title="Link to this heading">#</a></h3>
+<p>First, load the data and get a sense of where values are missing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we call .head() on the DataFrame to display the first five rows. This gives us a quick peek at the structure and contents of our dataset, including column names and sample values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Person_ID</th>
+      <th>AssessmentID</th>
+      <th>Case_ID</th>
+      <th>Agency_Text</th>
+      <th>LastName</th>
+      <th>FirstName</th>
+      <th>MiddleName</th>
+      <th>Sex_Code_Text</th>
+      <th>Ethnic_Code_Text</th>
+      <th>ScaleSet_ID</th>
+      <th>...</th>
+      <th>MaritalStatus</th>
+      <th>RecSupervisionLevel</th>
+      <th>RecSupervisionLevelText</th>
+      <th>Scale_ID</th>
+      <th>DisplayText</th>
+      <th>RawScore</th>
+      <th>DecileScore</th>
+      <th>ScoreText</th>
+      <th>AssessmentType</th>
+      <th>Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>50844</td>
+      <td>57167</td>
+      <td>51950</td>
+      <td>PRETRIAL</td>
+      <td>Fisher</td>
+      <td>Kevin</td>
+      <td>NaN</td>
+      <td>Male</td>
+      <td>Caucasian</td>
+      <td>22</td>
+      <td>...</td>
+      <td>Single</td>
+      <td>1</td>
+      <td>Low</td>
+      <td>18</td>
+      <td>Risk of Failure to Appear</td>
+      <td>15.00</td>
+      <td>1</td>
+      <td>Low</td>
+      <td>New</td>
+      <td>20.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50848</td>
+      <td>57174</td>
+      <td>51956</td>
+      <td>PRETRIAL</td>
+      <td>KENDALL</td>
+      <td>KEVIN</td>
+      <td>NaN</td>
+      <td>Male</td>
+      <td>Caucasian</td>
+      <td>22</td>
+      <td>...</td>
+      <td>Married</td>
+      <td>1</td>
+      <td>Low</td>
+      <td>18</td>
+      <td>Risk of Failure to Appear</td>
+      <td>19.00</td>
+      <td>3</td>
+      <td>Low</td>
+      <td>New</td>
+      <td>28.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>50855</td>
+      <td>57181</td>
+      <td>51963</td>
+      <td>PRETRIAL</td>
+      <td>DAYES</td>
+      <td>DANIEL</td>
+      <td>NaN</td>
+      <td>Male</td>
+      <td>African-American</td>
+      <td>22</td>
+      <td>...</td>
+      <td>Single</td>
+      <td>4</td>
+      <td>High</td>
+      <td>8</td>
+      <td>Risk of Recidivism</td>
+      <td>0.18</td>
+      <td>8</td>
+      <td>High</td>
+      <td>New</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>50855</td>
+      <td>57181</td>
+      <td>51963</td>
+      <td>PRETRIAL</td>
+      <td>DAYES</td>
+      <td>DANIEL</td>
+      <td>NaN</td>
+      <td>Male</td>
+      <td>African-American</td>
+      <td>22</td>
+      <td>...</td>
+      <td>Single</td>
+      <td>4</td>
+      <td>High</td>
+      <td>18</td>
+      <td>Risk of Failure to Appear</td>
+      <td>13.00</td>
+      <td>1</td>
+      <td>Low</td>
+      <td>New</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>50850</td>
+      <td>57176</td>
+      <td>51958</td>
+      <td>PRETRIAL</td>
+      <td>Debe</td>
+      <td>Mikerlie</td>
+      <td>George</td>
+      <td>Female</td>
+      <td>African-American</td>
+      <td>22</td>
+      <td>...</td>
+      <td>Significant Other</td>
+      <td>2</td>
+      <td>Medium</td>
+      <td>18</td>
+      <td>Risk of Failure to Appear</td>
+      <td>11.00</td>
+      <td>1</td>
+      <td>Low</td>
+      <td>New</td>
+      <td>18.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div></div></div>
+</div>
+<blockquote>
+<div><p><strong>What to look for in the output:</strong></p>
+<ul class="simple">
+<li><p><strong>Column names</strong> such as <code class="docutils literal notranslate"><span class="pre">Person_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">Case_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">LastName</span></code>, <code class="docutils literal notranslate"><span class="pre">FirstName</span></code>, <code class="docutils literal notranslate"><span class="pre">MiddleName</span></code>, <code class="docutils literal notranslate"><span class="pre">Sex_Code_Text</span></code>, <code class="docutils literal notranslate"><span class="pre">Ethnic_Code_Text</span></code>, <code class="docutils literal notranslate"><span class="pre">RawScore</span></code>, <code class="docutils literal notranslate"><span class="pre">DecileScore</span></code>, <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code>, <code class="docutils literal notranslate"><span class="pre">Age</span></code></p></li>
+<li><p><strong>Data types</strong> (numeric vs. categorical) and any surprising or missing values</p></li>
+<li><p><strong>Structure</strong> of the dataset—how it’s organized before we begin cleaning and analysis</p></li>
+</ul>
+</div></blockquote>
+<p>Now that we’ve successfully loaded the COMPAS dataset into our <code class="docutils literal notranslate"><span class="pre">df</span></code> object, it’s time to get a quick overview of its structure. In the next step, we’ll check how big the table is and see where any missing values might be hiding.</p>
+<section id="checking-dataset-size-and-missing-data">
+<h4>Checking Dataset Size and Missing Data<a class="headerlink" href="#checking-dataset-size-and-missing-data" title="Link to this heading">#</a></h4>
+<p>In this step, we first look at the overall size of our dataset and then count any empty or missing values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset shape: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset shape: (24272, 24)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>What does the output mean?</strong></p>
+<ul class="simple">
+<li><p><strong>Dataset shape</strong><br />
+This tells us how many rows (records) and columns (fields) we have.<br />
+For example, <code class="docutils literal notranslate"><span class="pre">(24272,</span> <span class="pre">24)</span></code> means 24,072 rows and 24 columns.</p></li>
+</ul>
+</section>
+</section>
+<section id="handle-missing-values">
+<h3>2.2 Handle Missing Values<a class="headerlink" href="#handle-missing-values" title="Link to this heading">#</a></h3>
+<section id="counting-missing-values">
+<h4>Counting Missing Values<a class="headerlink" href="#counting-missing-values" title="Link to this heading">#</a></h4>
+<p>First, let’s see which columns have missing data and how many blanks each contains:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">missing</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Missing values per column:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">missing</span><span class="p">[</span><span class="n">missing</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Missing values per column:
+MiddleName    17942
+ScoreText        45
+Age              56
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="options-for-handling-missing-values">
+<h4>Options for Handling Missing Values<a class="headerlink" href="#options-for-handling-missing-values" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Removal:</strong> drop rows or columns with too many nulls</p></li>
+<li><p><strong>Imputation:</strong> fill with mean/median or a constant</p></li>
+</ul>
+<section id="middlename-17-942-missing-values">
+<h5>MiddleName: 17,942 missing values<a class="headerlink" href="#middlename-17-942-missing-values" title="Link to this heading">#</a></h5>
+<p>Most records don’t include a middle name—since this field isn’t critical to our analysis, we’ll drop the entire column.</p>
+</section>
+<section id="scoretext-45-missing-values">
+<h5>ScoreText: 45 missing values<a class="headerlink" href="#scoretext-45-missing-values" title="Link to this heading">#</a></h5>
+<p>A small number of records lack the textual risk label. We’ll remove any rows where <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> is missing, since we need that label for downstream analyses.</p>
+</section>
+<section id="age-56-missing-values">
+<h5>Age: 56 missing values<a class="headerlink" href="#age-56-missing-values" title="Link to this heading">#</a></h5>
+<p>A handful of entries are missing age information. Since age is important for our analysis, we’ll impute these missing ages with the median age value.</p>
+<p>By printing only <code class="docutils literal notranslate"><span class="pre">missing[missing</span> <span class="pre">&gt;</span> <span class="pre">0]</span></code>, we focus on the columns that actually have missing entries, allowing us to target our cleaning efforts precisely.</p>
+<p>Below we’ll:</p>
+<ol class="arabic simple">
+<li><p>Drop columns with &gt;50% missing</p></li>
+<li><p>Impute <code class="docutils literal notranslate"><span class="pre">Age</span></code> with the median</p></li>
+</ol>
+</section>
+<section id="step-1-drop-mostly-empty-columns">
+<h5>Step 1: Drop Mostly Empty Columns<a class="headerlink" href="#step-1-drop-mostly-empty-columns" title="Link to this heading">#</a></h5>
+<p>Our dataset has a “MiddleName” column that’s almost entirely blank. To avoid clutter, we remove any column where more than half of its values are missing. This will automatically drop “MiddleName” and any other mostly empty fields.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">threshold</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">thresh</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">
+<h5>Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code><a class="headerlink" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age" title="Link to this heading">#</a></h5>
+<p>First, we drop any rows where <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> is blank, since those entries don’t tell us whether someone was classified as “Low,” “Medium,” or “High” risk. After that, we flag rows with missing <code class="docutils literal notranslate"><span class="pre">Age</span></code>, compute the median age, and fill those gaps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Drop rows where ScoreText is blank</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ScoreText&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+<span class="c1"># 2. Flag rows where Age was missing</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;age_missing&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+
+<span class="c1"># 3. Compute median Age and fill missing ages</span>
+<span class="n">median_age</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">median_age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="now-we-have">
+<h5>Now we have:<a class="headerlink" href="#now-we-have" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>Removed all rows lacking a valid risk category in <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code>.</p></li>
+<li><p>Marked originally missing <code class="docutils literal notranslate"><span class="pre">Age</span></code> values in a new <code class="docutils literal notranslate"><span class="pre">age_missing</span></code> column.</p></li>
+<li><p>Filled those missing ages with the dataset’s median age.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="validate-correct-data-types">
+<h3>2.3 Validate &amp; Correct Data Types<a class="headerlink" href="#validate-correct-data-types" title="Link to this heading">#</a></h3>
+<p>Before we go further, let’s make sure each column uses the right data type:</p>
+<ul class="simple">
+<li><p>Numbers as integers or floats</p></li>
+<li><p>Dates as datetime objects</p></li>
+<li><p>Text fields we’ll analyze categorically as “category”</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert Score and Age to integers</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]</span>    <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;DecileScore&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DecileScore&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span>         <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+
+<span class="c1"># Convert text fields to categorical</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="s2">&quot;ScoreText&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex_Code_Text&quot;</span><span class="p">,</span> <span class="s2">&quot;Ethnic_Code_Text&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Language&quot;</span><span class="p">,</span> <span class="s2">&quot;MaritalStatus&quot;</span><span class="p">,</span> <span class="s2">&quot;RecSupervisionLevelText&quot;</span>
+<span class="p">]:</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verify types without any warnings</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Person_ID                     int64
+AssessmentID                  int64
+Case_ID                       int64
+Agency_Text                  object
+LastName                     object
+FirstName                    object
+Sex_Code_Text              category
+Ethnic_Code_Text           category
+ScaleSet_ID                   int64
+ScaleSet                     object
+Language                   category
+LegalStatus                  object
+CustodyStatus                object
+MaritalStatus              category
+RecSupervisionLevel           int64
+RecSupervisionLevelText    category
+Scale_ID                      int64
+DisplayText                  object
+RawScore                      int64
+DecileScore                   int64
+ScoreText                  category
+AssessmentType               object
+Age                           int64
+age_missing                    bool
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>What we’ve done:</strong></p>
+<ul class="simple">
+<li><p>Forced <code class="docutils literal notranslate"><span class="pre">RawScore</span></code>, <code class="docutils literal notranslate"><span class="pre">DecileScore</span></code>, and <code class="docutils literal notranslate"><span class="pre">Age</span></code> into integer form</p></li>
+<li><p>Marked risk categories and demographic fields as categorical</p></li>
+<li><p>Verified the changes by inspecting <code class="docutils literal notranslate"><span class="pre">df.dtypes</span></code></p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">
+<h3>Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code><a class="headerlink" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore" title="Link to this heading">#</a></h3>
+<p>Even smart data can hide a few extreme values—called <strong>outliers</strong>—that skew our insights. We’ll clean those out by:</p>
+<ol class="arabic simple">
+<li><p><strong>Sorting</strong> all <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> values and finding the 25th percentile (Q1) and 75th percentile (Q3).</p></li>
+<li><p>Calculating the <strong>interquartile range (IQR)</strong> = Q3 − Q1, which covers the middle 50% of the data.</p></li>
+<li><p>Defining an <strong>acceptable range</strong> as   [Q1 − 3×IQR, Q3 + 3×IQR]</p></li>
+<li><p><strong>Keeping</strong> only rows with <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> inside that range and dropping the rest.</p></li>
+</ol>
+<p>This preserves most of the data while removing the very highest or lowest scores that could mislead our analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Calculate Q1 (25th percentile) and Q3 (75th percentile) for RawScore</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">Q3</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+
+<span class="c1"># 2. Compute the IQR</span>
+<span class="n">IQR</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">-</span> <span class="n">Q1</span>
+
+<span class="c1"># 3. Define acceptable lower and upper bounds</span>
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">IQR</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">IQR</span>
+
+<span class="c1"># 4. Filter the dataframe to keep only non-outliers</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">lower_bound</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">upper_bound</span><span class="p">)]</span>
+
+<span class="c1"># 5. Report how many rows we kept versus removed</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rows before cleaning: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Rows after removing outliers: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_clean</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows before cleaning: 24272
+Rows after removing outliers: 24263
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><strong>In plain terms:</strong></p>
+<ul class="simple">
+<li><p>We measured how wide the middle 50% of scores is.</p></li>
+<li><p>We dropped any scores more than three times that range away from the center.</p></li>
+<li><p>Now <code class="docutils literal notranslate"><span class="pre">df_clean</span></code> has most of our original rows minus the extreme cases that could distort averages or trends.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="step-2-5-standardize-normalize-key-variables">
+<h3>Step 2.5: Standardize &amp; Normalize Key Variables<a class="headerlink" href="#step-2-5-standardize-normalize-key-variables" title="Link to this heading">#</a></h3>
+<p>Some analysis methods work best when numbers share a common scale. We’ll use two popular Python libraries:</p>
+<ul class="simple">
+<li><p><strong>SciPy</strong> (<code class="docutils literal notranslate"><span class="pre">scipy</span></code>): a scientific computing library that includes statistical functions, like calculating z‑scores.</p></li>
+<li><p><strong>scikit‑learn</strong> (<code class="docutils literal notranslate"><span class="pre">sklearn</span></code>): a machine‑learning library that provides tools for data preprocessing, including min‑max scaling.</p></li>
+</ul>
+<p>Here’s what we’ll do:</p>
+<ol class="arabic simple">
+<li><p><strong>Z‑score Standardization</strong> on <code class="docutils literal notranslate"><span class="pre">Age</span></code></p>
+<ul class="simple">
+<li><p>Subtract the average age, then divide by the age’s standard deviation</p></li>
+<li><p>Result is a new column <code class="docutils literal notranslate"><span class="pre">age_z</span></code> where most values fall between –3 and +3</p></li>
+</ul>
+</li>
+<li><p><strong>Min‑Max Scaling</strong> on <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></p>
+<ul class="simple">
+<li><p>Rescales <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> to lie between 0 (lowest score) and 1 (highest score)</p></li>
+<li><p>Result is a new column <code class="docutils literal notranslate"><span class="pre">rawscore_scaled</span></code> that preserves relative differences</p></li>
+</ul>
+</li>
+</ol>
+<p>We’ll apply both to our cleaned data in <code class="docutils literal notranslate"><span class="pre">df_clean</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MinMaxScaler</span>
+
+<span class="c1"># 1. Z‑score standardization on Age</span>
+<span class="n">df_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;age_z&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">zscore</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">])</span>
+
+<span class="c1"># 2. Min‑max scaling on RawScore</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">df_clean</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;rawscore_scaled&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df_clean</span><span class="p">[[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">]])</span>
+
+<span class="c1"># Show the new columns alongside the originals</span>
+<span class="n">df_clean</span><span class="p">[[</span><span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="s2">&quot;age_z&quot;</span><span class="p">,</span> <span class="s2">&quot;RawScore&quot;</span><span class="p">,</span> <span class="s2">&quot;rawscore_scaled&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\demoore\AppData\Local\Temp\ipykernel_19992\2835621474.py:5: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_clean.loc[:, &quot;age_z&quot;] = stats.zscore(df_clean[&quot;Age&quot;])
+C:\Users\demoore\AppData\Local\Temp\ipykernel_19992\2835621474.py:9: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df_clean.loc[:, &quot;rawscore_scaled&quot;] = scaler.fit_transform(df_clean[[&quot;RawScore&quot;]])
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>age_z</th>
+      <th>RawScore</th>
+      <th>rawscore_scaled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>20</td>
+      <td>-1.057784</td>
+      <td>15</td>
+      <td>0.333333</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>28</td>
+      <td>-0.387237</td>
+      <td>19</td>
+      <td>0.422222</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>18</td>
+      <td>-1.225421</td>
+      <td>0</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>18</td>
+      <td>-1.225421</td>
+      <td>13</td>
+      <td>0.288889</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>18</td>
+      <td>-1.225421</td>
+      <td>11</td>
+      <td>0.244444</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="interpreting-our-transformed-data">
+<h2>Interpreting Our Transformed Data<a class="headerlink" href="#interpreting-our-transformed-data" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Age</p></th>
+<th class="head"><p>age_z</p></th>
+<th class="head"><p>RawScore</p></th>
+<th class="head"><p>rawscore_scaled</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>-1.057784</p></td>
+<td><p>15</p></td>
+<td><p>0.3333</p></td>
+</tr>
+<tr class="row-odd"><td><p>28</p></td>
+<td><p>-0.387237</p></td>
+<td><p>19</p></td>
+<td><p>0.4222</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>-1.225421</p></td>
+<td><p>0</p></td>
+<td><p>0.0000</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>-1.225421</p></td>
+<td><p>13</p></td>
+<td><p>0.2888</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="what-each-column-is">
+<h3>What each column is<a class="headerlink" href="#what-each-column-is" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Age</strong><br />
+The actual age in years</p></li>
+<li><p><strong>age_z</strong><br />
+A “z‑score” shows how far each age is from the average age, measured in standard units</p>
+<ul>
+<li><p>0 means exactly average</p></li>
+<li><p>Negative means below average</p></li>
+<li><p>Positive means above average</p></li>
+<li><p>−-1.05778 means about -1.05778 units younger than average</p></li>
+</ul>
+</li>
+<li><p><strong>RawScore</strong><br />
+The original score before any changes (for example a test result or rating)</p></li>
+<li><p><strong>rawscore_scaled</strong><br />
+The RawScore rescaled to lie between 0 and 1</p>
+<ul>
+<li><p>0 is the lowest RawScore in our group</p></li>
+<li><p>1 is the highest RawScore in our group</p></li>
+<li><p>0.03 means very close to the lowest</p></li>
+<li><p>0.29 means 29 percent of the way from lowest to highest</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-we-do-this">
+<h3>Why we do this<a class="headerlink" href="#why-we-do-this" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Fair comparison</strong><br />
+When columns use very different units or ranges our analysis can get biased. Standardizing and scaling puts all numbers on the same footing.</p></li>
+<li><p><strong>Better results</strong><br />
+Many data tools and machine learning methods work best when inputs live on the same scale.</p></li>
+<li><p><strong>Clear interpretation</strong></p>
+<ul class="simple">
+<li><p>Z‑scores tell us how far a value is from the average in comparable units</p></li>
+<li><p>Scaled scores between 0 and 1 make it easy to see relative position without worrying about original units</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p>In plain terms, we’ve “translated” every number so they all speak the same language. That helps our next analysis steps work properly and gives you a fair way to compare apples to apples.</p>
+</section>
+<section id="step-2-6-record-your-cleaning-steps">
+<h3>Step 2.6: Record Your Cleaning Steps<a class="headerlink" href="#step-2-6-record-your-cleaning-steps" title="Link to this heading">#</a></h3>
+<p>Finally, it’s best practice to keep a log of every transformation. Below we build a simple dictionary summarizing what we did:</p>
+<ul class="simple">
+<li><p>Which columns we dropped because they were mostly empty</p></li>
+<li><p>The median age we used for imputation</p></li>
+<li><p>The bounds we used to remove outliers in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></p></li>
+<li><p>Which columns we standardized and normalized</p></li>
+</ul>
+<p>At the end, we print this log in a clear, readable format.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Build a list of (Step, Details)</span>
+<span class="n">log_items</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;Dropped Columns&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">missing</span><span class="p">[</span><span class="n">missing</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;Imputed Age&quot;</span><span class="p">,</span> <span class="n">median_age</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Outlier Bounds (RawScore)&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;Standardized&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;age_z&quot;</span><span class="p">]),</span>
+    <span class="p">(</span><span class="s2">&quot;Normalized&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;rawscore_scaled&quot;</span><span class="p">])</span>
+<span class="p">]</span>
+
+<span class="c1"># Turn it into a DataFrame and display</span>
+<span class="n">log_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">log_items</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Step&quot;</span><span class="p">,</span> <span class="s2">&quot;Details&quot;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">log_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Step</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Dropped Columns</td>
+      <td>[MiddleName]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Imputed Age</td>
+      <td>29.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Outlier Bounds (RawScore)</td>
+      <td>(-11.0, 45.0)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Standardized</td>
+      <td>[age_z]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Normalized</td>
+      <td>[rawscore_scaled]</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>How to read this table:</strong></p>
+<ul class="simple">
+<li><p><strong>Step:</strong> what we did</p></li>
+<li><p><strong>Details:</strong> the exact values or columns affected by that step</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Why this matters:</strong><br />
+A clear transformation log makes your work reproducible and lets others (or future you) understand exactly how the data was prepared before any analysis or modeling.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="next-steps-continue-in-python-or-switch-to-r">
+<h2>Next Steps: Continue in Python or Switch to R<a class="headerlink" href="#next-steps-continue-in-python-or-switch-to-r" title="Link to this heading">#</a></h2>
+<p>Our data is now clean and properly formatted. You have two options:</p>
+<ol class="arabic simple">
+<li><p><strong>Try the R version</strong> of this cleaning workflow by opening <code class="docutils literal notranslate"><span class="pre">02_data_cleaning_R.ipynb</span></code>.</p></li>
+<li><p><strong>Move on to summary statistics in Python</strong> by opening <code class="docutils literal notranslate"><span class="pre">03_summary_statistics_Python.ipynb</span></code>.</p></li>
+</ol>
+<p>Choose the notebook that matches your preferred language, and let’s continue exploring our recidivism dataset!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Exploratory Data Analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_data_cleaning_R.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">02: Data Cleaning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pandas-library">Loading the Pandas Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-quantify-missing-data">2.1 Identify &amp; Quantify Missing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-dataset-size-and-missing-data">Checking Dataset Size and Missing Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">2.2 Handle Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-missing-values">Counting Missing Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-handling-missing-values">Options for Handling Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#middlename-17-942-missing-values">MiddleName: 17,942 missing values</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scoretext-45-missing-values">ScoreText: 45 missing values</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#age-56-missing-values">Age: 56 missing values</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drop-mostly-empty-columns">Step 1: Drop Mostly Empty Columns</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code></a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-have">Now we have:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-correct-data-types">2.3 Validate &amp; Correct Data Types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-5-standardize-normalize-key-variables">Step 2.5: Standardize &amp; Normalize Key Variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-our-transformed-data">Interpreting Our Transformed Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-each-column-is">What each column is</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-do-this">Why we do this</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-6-record-your-cleaning-steps">Step 2.6: Record Your Cleaning Steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-continue-in-python-or-switch-to-r">Next Steps: Continue in Python or Switch to R</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By An Introduction for IDA Staff
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
