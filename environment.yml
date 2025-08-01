@@ -9,8 +9,7 @@ dependencies:
   - pandas
   - numpy
   - matplotlib
-  - jupyterlab
-  - jupyternotebook
+  - notebook
   # R
   - r-base
   - r-essentials
