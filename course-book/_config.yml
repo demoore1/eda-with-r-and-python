@@ -17,4 +17,4 @@ html:
 
 launch_buttons:
   binderhub_url: "https://mybinder.org"
-  notebook_interface: "notebook"
+  notebook_interface: "jupyterlab"
