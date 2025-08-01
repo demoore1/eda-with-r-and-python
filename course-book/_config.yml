@@ -1,0 +1,20 @@
+title: Exploratory Data Analysis 
+author: An Introduction for IDA Staff
+logo: IDA-Logo.png
+only_build_toc_files: true
+
+repository:
+  url: https://github.com/demoore1/eda-with-r-and-python
+  path_to_book: course-book
+  branch: main
+
+html:
+  favicon: IDA-Logo.png
+  use_repository_button: true
+  use_edit_page_button: false
+  use_issues_button: true
+
+
+launch_buttons:
+  binderhub_url: "https://mybinder.org"
+  notebook_interface: "notebook"

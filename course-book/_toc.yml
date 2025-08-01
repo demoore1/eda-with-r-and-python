@@ -1,0 +1,12 @@
+format: jb-book
+root: index
+
+chapters:
+  - file: 01_introduction
+  - file: 02_data_cleaning_Python
+  - file: 02_data_cleaning_R
+  - file: 03_summary_statistics_Python
+  - file: 03_summary_statistics_R
+  - file: 04_visualizations_Python
+  - file: 04_visualizations_R
+  - file: 06_next_steps
