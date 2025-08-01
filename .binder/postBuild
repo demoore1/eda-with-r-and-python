@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script runs after the environment is built by Binder
+
+echo "Running post-build setup"
