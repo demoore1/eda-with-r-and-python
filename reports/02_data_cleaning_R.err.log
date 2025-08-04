@@ -36,36 +36,33 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-# Scatter plot of Age vs RawScore
-df2<- read.csv("data/compas_sample_new.csv", stringsAsFactors = FALSE)
+# only run this block your first time doing this training.
 
-library(ggplot2)               # load ggplot2 for plotting
-ggplot(df2, aes(x = Age, y = RawScore)) +
-  geom_point(alpha = 0.3) +    # plot semi-transparent points so overlaps are visible
-  labs(
-    title = "Scatter: Age vs RawScore",  # chart title
-    x     = "Age (years)",               # x-axis label
-    y     = "RawScore"                   # y-axis label
-  )
+
+pkgs <- scan("requirements_R.txt", what = "")
+install.packages(
+  pkgs,
+  repos        = "https://cloud.r-project.org",
+  dependencies = TRUE
+)
+
 ------------------
 
 ----- stderr -----
-Warning message in file(file, "rt"):
-"cannot open file 'data/compas_sample_new.csv': No such file or directory"
+Warning message in file(file, "r"):
+"cannot open file 'requirements_R.txt': No such file or directory"
 ------------------
 
-Error in file(file, "rt"): cannot open the connection
+Error in file(file, "r"): cannot open the connection
 Traceback:
 
-1. read.table(file = file, header = header, sep = sep, quote = quote, 
- .     dec = dec, fill = fill, comment.char = comment.char, ...)
-2. file(file, "rt")
-3. .handleSimpleError(function (cnd) 
+1. file(file, "r")
+2. .handleSimpleError(function (cnd) 
  . {
  .     watcher$capture_plot_and_output()
  .     cnd <- sanitize_call(cnd)
  .     watcher$push(cnd)
  .     switch(on_error, continue = invokeRestart("eval_continue"), 
  .         stop = invokeRestart("eval_stop"), error = NULL)
- . }, "cannot open the connection", base::quote(file(file, "rt")))
+ . }, "cannot open the connection", base::quote(file(file, "r")))
 
