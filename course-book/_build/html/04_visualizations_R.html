@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>04: Visualizations &#8212; Exploratory Data Analysis</title>
+    <title>R Demo - Visualizations &#8212; Exploratory Data Analysis</title>
   
   
   
@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="You’ve Finished Exploratory Data Analysis!" href="06_next_steps.html" />
-    <link rel="prev" title="04: Visualizations" href="04_visualizations_Python.html" />
+    <link rel="prev" title="Python Demo - Visualizations" href="04_visualizations_Python.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,15 +181,37 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Data Cleaning Using Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">Data Cleaning Using R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Definition.html">Definition</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">04: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Cleaning.html">Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Python Demo</a></li>
 
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">R Demo</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary%20statistics.html">Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">Python Demo - Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">R Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizations.html">EDA Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">Python Demo - Visualizations</a></li>
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">R Demo - Visualizations</a></li>
+
+
+
+
+
+
+
 
 <li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
@@ -408,7 +430,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>04: Visualizations</h1>
+    <h1>R Demo - Visualizations</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -418,65 +440,58 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">04: Visualizations</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-key-charts">Creating Key Charts</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">1. Histogram</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-histogram-of-raw-scores">What You’ll See: Histogram of Raw Scores</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#library-ggplot2"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-x-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-histogram-binwidth-2-color-black-fill-lightblue"><code class="docutils literal notranslate"><span class="pre">geom_histogram(binwidth</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">color</span> <span class="pre">=</span> <span class="pre">"black",</span> <span class="pre">fill</span> <span class="pre">=</span> <span class="pre">"lightblue")</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-histogram-of-raw-scores-x-rawscore-y-count"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"RawScore",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"Count")</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R Demo - Visualizations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">1. Histogram</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-histogram-of-raw-scores">What You’ll See: Histogram of Raw Scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-ggplot2"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-x-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-histogram-binwidth-2-color-black-fill-lightblue"><code class="docutils literal notranslate"><span class="pre">geom_histogram(binwidth</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">color</span> <span class="pre">=</span> <span class="pre">"black",</span> <span class="pre">fill</span> <span class="pre">=</span> <span class="pre">"lightblue")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-histogram-of-raw-scores-x-rawscore-y-count"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"RawScore",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"Count")</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-chart">Interpreting the Chart</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">2. Box Plot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-box-plot-of-raw-scores">What You’ll See: Box Plot of Raw Scores</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-boxplot-fill-lightgreen"><code class="docutils literal notranslate"><span class="pre">geom_boxplot(fill</span> <span class="pre">=</span> <span class="pre">"lightgreen")</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-box-plot-of-raw-scores-y-rawscore">labs(title = “Box Plot of Raw Scores”, y = “RawScore”)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-plot">Interpreting the plot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">2. Box Plot</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-box-plot-of-raw-scores">What You’ll See: Box Plot of Raw Scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-boxplot-fill-lightgreen"><code class="docutils literal notranslate"><span class="pre">geom_boxplot(fill</span> <span class="pre">=</span> <span class="pre">"lightgreen")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-box-plot-of-raw-scores-y-rawscore">labs(title = “Box Plot of Raw Scores”, y = “RawScore”)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df2-aes-x-age-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-point-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"Age</span> <span class="pre">(years)",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"RawScore")</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-plot">Interpreting the plot</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see">What you’ll see</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df2-aes-x-age-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-point-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"Age</span> <span class="pre">(years)",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"RawScore")</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation Matrix</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">What you’ll see</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see">What you’ll see</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">Heatmap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#library-corrplot"><code class="docutils literal notranslate"><span class="pre">library(corrplot)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#num-df-df-sapply-df-is-numeric"><code class="docutils literal notranslate"><span class="pre">num_df</span> <span class="pre">&lt;-</span> <span class="pre">df[sapply(df,</span> <span class="pre">is.numeric)]</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#corr-mat-cor-num-df-use-pairwise-complete-obs"><code class="docutils literal notranslate"><span class="pre">corr_mat</span> <span class="pre">&lt;-</span> <span class="pre">cor(num_df,</span> <span class="pre">use</span> <span class="pre">=</span> <span class="pre">"pairwise.complete.obs")</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#corrplot-corr-mat-method-color-tl-cex-0-6"><code class="docutils literal notranslate"><span class="pre">corrplot(corr_mat,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">"color",</span> <span class="pre">tl.cex</span> <span class="pre">=</span> <span class="pre">0.6)</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">What you’ll see</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">What you’ll see</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">Heatmap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-corrplot"><code class="docutils literal notranslate"><span class="pre">library(corrplot)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#num-df-df-sapply-df-is-numeric"><code class="docutils literal notranslate"><span class="pre">num_df</span> <span class="pre">&lt;-</span> <span class="pre">df[sapply(df,</span> <span class="pre">is.numeric)]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corr-mat-cor-num-df-use-pairwise-complete-obs"><code class="docutils literal notranslate"><span class="pre">corr_mat</span> <span class="pre">&lt;-</span> <span class="pre">cor(num_df,</span> <span class="pre">use</span> <span class="pre">=</span> <span class="pre">"pairwise.complete.obs")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrplot-corr-mat-method-color-tl-cex-0-6"><code class="docutils literal notranslate"><span class="pre">corrplot(corr_mat,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">"color",</span> <span class="pre">tl.cex</span> <span class="pre">=</span> <span class="pre">0.6)</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-matrix">Scatterplot Matrix</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">What you’ll see</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">What you’ll see</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-matrix">Scatterplot Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">What you’ll see</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#youre-all-set">🎉 You’re All Set!</a><ul class="visible nav section-nav flex-column">
@@ -495,35 +510,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><section class="tex2jax_ignore mathjax_ignore" id="visualizations">
-<h1>04: Visualizations<a class="headerlink" href="#visualizations" title="Link to this heading">#</a></h1>
-<section id="objective">
-<h2>Objective:<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
-<p>In this lesson, you will learn how to create and read simple visual charts that turn raw numbers into clear pictures.</p>
-<table width="100%">
-  <tr>
-    <td style="vertical-align: top; text-align: left; width: 60%; padding-right: 20px;"> </br> </br></br> </br></br>
-    <strong>You'll Build:</strong>
-      <ol style="font-size: 18px; line-height: 1.4;">
-        <li><strong>Histograms:</strong> to see how often different scores occur  </li>
-        <li><strong>Box plots:</strong> to spot unusually high or low values and compare groups  </li>
-        <li><strong>Scatter plots:</strong> to see if two measurements move together (for example, Age vs.  Recidivism Score) </li>
-        <li><strong>Heatmaps:</strong> to quickly identify which pairs of variables tend to rise and fall in sync  </li>
-      </ol>
-    </td>
-    <td style="vertical-align: top; text-align: left; width: 40%;">
-   <!-- relative path to visualizations.png -->
-      <img src="slides/visualizations.png" alt="data vis" width="1000" />
-    </td>
-  </tr>
-</table>
-<section id="by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">
-<h3>By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.<a class="headerlink" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before" title="Link to this heading">#</a></h3>
-<hr class="docutils" />
-<audio controls src="audio/Visualization.m4a"></section>
-<hr class="docutils" />
-<section id="creating-key-charts">
-<h3>Creating Key Charts<a class="headerlink" href="#creating-key-charts" title="Link to this heading">#</a></h3>
+  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><section id="r-demo-visualizations">
+<h1>R Demo - Visualizations<a class="headerlink" href="#r-demo-visualizations" title="Link to this heading">#</a></h1>
 <p>In this lesson you’ll learn how to turn numbers into pictures. We’ll use four chart types—histograms, box plots, scatter plots, and heatmaps—to explore our recidivism dataset. Each section includes:</p>
 <ol class="arabic simple">
 <li><p><strong>What we’re doing</strong> in plain English</p></li>
@@ -531,9 +519,8 @@ document.write(`
 <li><p><strong>What you’ll see</strong> and <strong>what it means</strong></p></li>
 </ol>
 </section>
-</section>
 <section id="histogram">
-<h2>1. Histogram<a class="headerlink" href="#histogram" title="Link to this heading">#</a></h2>
+<h1>1. Histogram<a class="headerlink" href="#histogram" title="Link to this heading">#</a></h1>
 <p><strong>What we’re doing:</strong><br />
 The first visualization we will explore is the histogram. Here we’ll draw bars that show how many people fall into each score range. This helps you see if scores cluster around a central value or spread out evenly.</p>
 <div class="cell docutils container">
@@ -564,24 +551,24 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 </div>
 </div>
 <section id="what-youll-see-histogram-of-raw-scores">
-<h3>What You’ll See: Histogram of Raw Scores<a class="headerlink" href="#what-youll-see-histogram-of-raw-scores" title="Link to this heading">#</a></h3>
+<h2>What You’ll See: Histogram of Raw Scores<a class="headerlink" href="#what-youll-see-histogram-of-raw-scores" title="Link to this heading">#</a></h2>
 <p>We’ll walk through how to read the histogram you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the R code is doing and what the resulting chart tells you.</p>
 <hr class="docutils" />
 <section id="library-ggplot2">
-<h4><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code><a class="headerlink" href="#library-ggplot2" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code><a class="headerlink" href="#library-ggplot2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Loads the <strong>ggplot2</strong> package, giving you access to its powerful, easy-to-use plotting functions.</p></li>
 </ul>
 </section>
 <section id="ggplot-df-aes-x-rawscore">
-<h4><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code><a class="headerlink" href="#ggplot-df-aes-x-rawscore" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code><a class="headerlink" href="#ggplot-df-aes-x-rawscore" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Chooses your dataset (<code class="docutils literal notranslate"><span class="pre">df</span></code>)</p></li>
 <li><p>Maps the <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> values to the horizontal axis</p></li>
 </ul>
 </section>
 <section id="geom-histogram-binwidth-2-color-black-fill-lightblue">
-<h4><code class="docutils literal notranslate"><span class="pre">geom_histogram(binwidth</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">color</span> <span class="pre">=</span> <span class="pre">&quot;black&quot;,</span> <span class="pre">fill</span> <span class="pre">=</span> <span class="pre">&quot;lightblue&quot;)</span></code><a class="headerlink" href="#geom-histogram-binwidth-2-color-black-fill-lightblue" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">geom_histogram(binwidth</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">color</span> <span class="pre">=</span> <span class="pre">&quot;black&quot;,</span> <span class="pre">fill</span> <span class="pre">=</span> <span class="pre">&quot;lightblue&quot;)</span></code><a class="headerlink" href="#geom-histogram-binwidth-2-color-black-fill-lightblue" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">binwidth</span> <span class="pre">=</span> <span class="pre">2</span></code></strong> groups scores into ranges of 2 points each</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">&quot;black&quot;</span></code></strong> draws a black outline around each bar for clarity</p></li>
@@ -589,14 +576,13 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 </ul>
 </section>
 <section id="labs-title-histogram-of-raw-scores-x-rawscore-y-count">
-<h4><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">&quot;Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores&quot;,</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">&quot;RawScore&quot;,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">&quot;Count&quot;)</span></code><a class="headerlink" href="#labs-title-histogram-of-raw-scores-x-rawscore-y-count" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">&quot;Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores&quot;,</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">&quot;RawScore&quot;,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">&quot;Count&quot;)</span></code><a class="headerlink" href="#labs-title-histogram-of-raw-scores-x-rawscore-y-count" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Adds a <strong>title</strong> (“Histogram of Raw Scores”)</p></li>
 <li><p>Labels the <strong>x-axis</strong> (“RawScore”) and <strong>y-axis</strong> (“Count”)</p></li>
 </ul>
+</section>
 <hr class="docutils" />
-</section>
-</section>
 <section id="interpreting-the-chart">
 <h3>Interpreting the Chart<a class="headerlink" href="#interpreting-the-chart" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -609,9 +595,9 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 <p>This visual helps you instantly see where most scores cluster and whether there are unusual low or high values you should investigate further.</p>
 </section>
 </section>
-<hr class="docutils" />
+</section>
 <section id="box-plot">
-<h2>2. Box Plot<a class="headerlink" href="#box-plot" title="Link to this heading">#</a></h2>
+<h1>2. Box Plot<a class="headerlink" href="#box-plot" title="Link to this heading">#</a></h1>
 <p><strong>What we’re doing:</strong></p>
 <ul class="simple">
 <li><p>Compute the 1st quartile (Q1, 25th percentile) and 3rd quartile (Q3, 75th percentile)</p></li>
@@ -644,17 +630,17 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 </div>
 </div>
 <section id="what-youll-see-box-plot-of-raw-scores">
-<h3>What You’ll See: Box Plot of Raw Scores<a class="headerlink" href="#what-youll-see-box-plot-of-raw-scores" title="Link to this heading">#</a></h3>
+<h2>What You’ll See: Box Plot of Raw Scores<a class="headerlink" href="#what-youll-see-box-plot-of-raw-scores" title="Link to this heading">#</a></h2>
 <p>We’ll walk through how to read the box plot you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the R code is doing and what the resulting chart tells you.</p>
 <section id="ggplot-df-aes-y-rawscore">
-<h4><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code><a class="headerlink" href="#ggplot-df-aes-y-rawscore" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code><a class="headerlink" href="#ggplot-df-aes-y-rawscore" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Chooses your dataset (<code class="docutils literal notranslate"><span class="pre">df</span></code>)</p></li>
 <li><p>Maps the <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> values to the vertical axis (one box for all scores)</p></li>
 </ul>
 </section>
 <section id="geom-boxplot-fill-lightgreen">
-<h4><code class="docutils literal notranslate"><span class="pre">geom_boxplot(fill</span> <span class="pre">=</span> <span class="pre">&quot;lightgreen&quot;)</span></code><a class="headerlink" href="#geom-boxplot-fill-lightgreen" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">geom_boxplot(fill</span> <span class="pre">=</span> <span class="pre">&quot;lightgreen&quot;)</span></code><a class="headerlink" href="#geom-boxplot-fill-lightgreen" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Draws a <strong>box</strong> showing the middle 50% of scores (from the 25th to the 75th percentile)</p></li>
 <li><p>Puts a <strong>line</strong> inside the box at the median (the value splitting the data in half)</p></li>
@@ -664,7 +650,7 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 </ul>
 </section>
 <section id="labs-title-box-plot-of-raw-scores-y-rawscore">
-<h4>labs(title = “Box Plot of Raw Scores”, y = “RawScore”)<a class="headerlink" href="#labs-title-box-plot-of-raw-scores-y-rawscore" title="Link to this heading">#</a></h4>
+<h3>labs(title = “Box Plot of Raw Scores”, y = “RawScore”)<a class="headerlink" href="#labs-title-box-plot-of-raw-scores-y-rawscore" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Adds a <strong>title</strong> so you know this is “Box Plot of Raw Scores”</p></li>
 <li><p>Labels the <strong><code class="docutils literal notranslate"><span class="pre">y-axis</span></code></strong> with <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></p></li>
@@ -673,7 +659,7 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 </section>
 </section>
 <section id="interpreting-the-plot">
-<h3>Interpreting the plot<a class="headerlink" href="#interpreting-the-plot" title="Link to this heading">#</a></h3>
+<h2>Interpreting the plot<a class="headerlink" href="#interpreting-the-plot" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The <strong>height of the box</strong> shows how spread out the middle half of your scores are.</p></li>
 <li><p>A <strong>short box</strong> means most scores are close together; a tall box means they vary more.</p></li>
@@ -683,9 +669,8 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 </ul>
 </section>
 </section>
-<hr class="docutils" />
 <section id="scatter-plot">
-<h2>3. Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h2>
+<h1>3. Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h1>
 <p><strong>What we’re doing</strong><br />
 We’ll draw one dot for each person in our dataset. The dot’s horizontal position shows their <strong>Age</strong>, and the vertical position shows their <strong>RawScore</strong>. This helps us see if older or younger people tend to score higher or lower.</p>
 <p><strong>Using a sample</strong><br />
@@ -707,60 +692,42 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(file, &quot;rt&quot;):
-&quot;cannot open file &#39;data/compas_sample_new.csv&#39;: No such file or directory&quot;
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">):</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">connection</span>
-<span class="ne">Traceback</span>:
-
-<span class="mi">1</span><span class="o">.</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">sep</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="n">quote</span><span class="p">,</span> 
- <span class="o">.</span>     <span class="n">dec</span> <span class="o">=</span> <span class="n">dec</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">fill</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">char</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">char</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
-<span class="mi">2</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span>
-<span class="mi">3</span><span class="o">.</span> <span class="o">.</span><span class="n">handleSimpleError</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">cnd</span><span class="p">)</span> 
- <span class="o">.</span> <span class="p">{</span>
- <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">capture_plot_and_output</span><span class="p">()</span>
- <span class="o">.</span>     <span class="n">cnd</span> <span class="o">&lt;-</span> <span class="n">sanitize_call</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">push</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
- <span class="o">.</span>     <span class="n">switch</span><span class="p">(</span><span class="n">on_error</span><span class="p">,</span> <span class="k">continue</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_continue&quot;</span><span class="p">),</span> 
- <span class="o">.</span>         <span class="n">stop</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_stop&quot;</span><span class="p">),</span> <span class="n">error</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">)</span>
- <span class="o">.</span> <span class="p">},</span> <span class="s2">&quot;cannot open the connection&quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">quote</span><span class="p">(</span><span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)))</span>
-</pre></div>
-</div>
+<a class="reference internal image-reference" href="_images/b222775337a87455bab97311e3a8a3f2a42c2061dccc3a57b7bda4af2389c09a.png"><img alt="_images/b222775337a87455bab97311e3a8a3f2a42c2061dccc3a57b7bda4af2389c09a.png" src="_images/b222775337a87455bab97311e3a8a3f2a42c2061dccc3a57b7bda4af2389c09a.png" style="width: 420px; height: 420px;" />
+</a>
 </div>
 </div>
 <section id="scatter-plot-of-age-vs-rawscore">
-<h3>Scatter Plot of Age vs RawScore<a class="headerlink" href="#scatter-plot-of-age-vs-rawscore" title="Link to this heading">#</a></h3>
+<h2>Scatter Plot of Age vs RawScore<a class="headerlink" href="#scatter-plot-of-age-vs-rawscore" title="Link to this heading">#</a></h2>
 <p>We’ll walk through how to read the scatter plot you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the R code is doing and what the resulting chart tells you.</p>
 <section id="df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false">
-<h4><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv(&quot;data/compas_sample_new.csv&quot;,</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code><a class="headerlink" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv(&quot;data/compas_sample_new.csv&quot;,</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code><a class="headerlink" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Reads your sample data (150 rows) into a data frame named <strong>df2</strong>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> keeps any text columns as plain text, not factors.</p></li>
 </ul>
 </section>
 <section id="id1">
-<h4><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code><a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Loads the <strong>ggplot2</strong> package, giving you access to its plotting functions.</p></li>
 </ul>
 </section>
 <section id="ggplot-df2-aes-x-age-y-rawscore">
-<h4><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code><a class="headerlink" href="#ggplot-df2-aes-x-age-y-rawscore" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code><a class="headerlink" href="#ggplot-df2-aes-x-age-y-rawscore" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Chooses <strong>df2</strong> as your data source.</p></li>
 <li><p>Maps <code class="docutils literal notranslate"><span class="pre">Age</span></code> to the horizontal axis and <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> to the vertical axis.</p></li>
 </ul>
 </section>
 <section id="geom-point-alpha-0-3">
-<h4><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code><a class="headerlink" href="#geom-point-alpha-0-3" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code><a class="headerlink" href="#geom-point-alpha-0-3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Draws one dot for each person in the sample.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3</span></code> makes points semi-transparent so overlapping dots remain visible.</p></li>
 </ul>
 </section>
 <section id="labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore">
-<h4><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">&quot;Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore&quot;,</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">&quot;Age</span> <span class="pre">(years)&quot;,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">&quot;RawScore&quot;)</span></code><a class="headerlink" href="#labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">&quot;Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore&quot;,</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">&quot;Age</span> <span class="pre">(years)&quot;,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">&quot;RawScore&quot;)</span></code><a class="headerlink" href="#labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Adds a <strong>title</strong> to the chart.</p></li>
 <li><p>Labels the x-axis with “Age (years)” and the y-axis with “RawScore”.</p></li>
@@ -769,7 +736,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </section>
 <hr class="docutils" />
 <section id="what-youll-see">
-<h3>What you’ll see<a class="headerlink" href="#what-youll-see" title="Link to this heading">#</a></h3>
+<h2>What you’ll see<a class="headerlink" href="#what-youll-see" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A <strong>cloud of dots</strong>, each representing one person’s age and risk score.</p></li>
 <li><p>If the cloud <strong>slopes upward</strong>, it suggests older individuals tend to have higher RawScores.</p></li>
@@ -779,9 +746,8 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </ul>
 </section>
 </section>
-<hr class="docutils" />
 <section id="correlation-analysis">
-<h2>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Link to this heading">#</a></h2>
+<h1>Correlation Analysis<a class="headerlink" href="#correlation-analysis" title="Link to this heading">#</a></h1>
 <p>The last topic we will cover is correlation analysis.</p>
 <p><strong>What It Is</strong></p>
 <ul class="simple">
@@ -801,9 +767,8 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <li><p><strong>Scatterplot Matrix:</strong> small scatter plots for each variable pair, letting you see the actual data points and check for non-linear patterns or outliers.</p></li>
 </ul>
 </section>
-<hr class="docutils" />
 <section id="correlation-matrix">
-<h2>Correlation Matrix<a class="headerlink" href="#correlation-matrix" title="Link to this heading">#</a></h2>
+<h1>Correlation Matrix<a class="headerlink" href="#correlation-matrix" title="Link to this heading">#</a></h1>
 <p>We’ll first create a <strong>correlation matrix</strong>, which is a table showing how strongly each numeric variable in our COMPAS data moves with every other. Values range from <strong>–1</strong> (perfect opposite) to <strong>+1</strong> (perfect sync), with <strong>0</strong> meaning no linear relationship.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -821,9 +786,33 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                    Person_ID AssessmentID Case_ID ScaleSet_ID
+Person_ID                1.00         0.36    0.58        0.05
+AssessmentID             0.36         1.00    0.62        0.01
+Case_ID                  0.58         0.62    1.00        0.05
+ScaleSet_ID              0.05         0.01    0.05        1.00
+RecSupervisionLevel     -0.26        -0.06   -0.15       -0.16
+Scale_ID                 0.15         0.03    0.10        0.10
+RawScore                 0.01         0.01    0.03        0.02
+DecileScore             -0.24        -0.04   -0.12       -0.11
+Age                      0.05         0.03    0.04        0.09
+                    RecSupervisionLevel Scale_ID RawScore DecileScore   Age
+Person_ID                         -0.26     0.15     0.01       -0.24  0.05
+AssessmentID                      -0.06     0.03     0.01       -0.04  0.03
+Case_ID                           -0.15     0.10     0.03       -0.12  0.04
+ScaleSet_ID                       -0.16     0.10     0.02       -0.11  0.09
+RecSupervisionLevel                1.00    -0.56    -0.26        0.61 -0.38
+Scale_ID                          -0.56     1.00     0.80       -0.69  0.19
+RawScore                          -0.26     0.80     1.00       -0.13  0.23
+DecileScore                        0.61    -0.69    -0.13        1.00 -0.04
+Age                               -0.38     0.19     0.23       -0.04  1.00
+</pre></div>
+</div>
+</div>
 </div>
 <section id="id2">
-<h3>What you’ll see<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h2>What you’ll see<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A <strong>square table</strong> where each row and column is one numeric field (Age, RawScore, DecileScore, etc.).</p></li>
 <li><p>Each cell shows the correlation coefficient between that row’s variable and that column’s variable.</p></li>
@@ -831,9 +820,8 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </ul>
 </section>
 </section>
-<hr class="docutils" />
 <section id="heatmap">
-<h2>Heatmap<a class="headerlink" href="#heatmap" title="Link to this heading">#</a></h2>
+<h1>Heatmap<a class="headerlink" href="#heatmap" title="Link to this heading">#</a></h1>
 <p><strong>What we’re doing</strong><br />
 We want to see how our key numeric variables (like Age, RawScore, DecileScore) move together. A correlation heatmap is a colored grid where each cell shows the strength of the relationship between two variables.</p>
 <div class="cell docutils container">
@@ -858,31 +846,60 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;package &#39;corrplot&#39; was built under R version 4.4.3&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>corrplot 0.95 loaded
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(file, &quot;rt&quot;):
+&quot;cannot open file &#39;data/compas_scores_positive.csv&#39;: No such file or directory&quot;
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">):</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">connection</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">read</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">header</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">sep</span><span class="p">,</span> <span class="n">quote</span> <span class="o">=</span> <span class="n">quote</span><span class="p">,</span> 
+ <span class="o">.</span>     <span class="n">dec</span> <span class="o">=</span> <span class="n">dec</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">fill</span><span class="p">,</span> <span class="n">comment</span><span class="o">.</span><span class="n">char</span> <span class="o">=</span> <span class="n">comment</span><span class="o">.</span><span class="n">char</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)</span>
+<span class="mi">3</span><span class="o">.</span> <span class="o">.</span><span class="n">handleSimpleError</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">cnd</span><span class="p">)</span> 
+ <span class="o">.</span> <span class="p">{</span>
+ <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">capture_plot_and_output</span><span class="p">()</span>
+ <span class="o">.</span>     <span class="n">cnd</span> <span class="o">&lt;-</span> <span class="n">sanitize_call</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">push</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">switch</span><span class="p">(</span><span class="n">on_error</span><span class="p">,</span> <span class="k">continue</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_continue&quot;</span><span class="p">),</span> 
+ <span class="o">.</span>         <span class="n">stop</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_stop&quot;</span><span class="p">),</span> <span class="n">error</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">)</span>
+ <span class="o">.</span> <span class="p">},</span> <span class="s2">&quot;cannot open the connection&quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">quote</span><span class="p">(</span><span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
 </div>
 <section id="correlation-heatmap">
-<h3>Correlation Heatmap<a class="headerlink" href="#correlation-heatmap" title="Link to this heading">#</a></h3>
+<h2>Correlation Heatmap<a class="headerlink" href="#correlation-heatmap" title="Link to this heading">#</a></h2>
 <p>We’ll walk through how to read the heatmap you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the R code is doing and what the resulting chart tells you.</p>
 <section id="library-corrplot">
-<h4><code class="docutils literal notranslate"><span class="pre">library(corrplot)</span></code><a class="headerlink" href="#library-corrplot" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">library(corrplot)</span></code><a class="headerlink" href="#library-corrplot" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Brings in <strong>corrplot</strong>, a package that makes drawing correlation grids easy.</p></li>
 </ul>
 </section>
 <section id="num-df-df-sapply-df-is-numeric">
-<h4><code class="docutils literal notranslate"><span class="pre">num_df</span> <span class="pre">&lt;-</span> <span class="pre">df[sapply(df,</span> <span class="pre">is.numeric)]</span></code><a class="headerlink" href="#num-df-df-sapply-df-is-numeric" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">num_df</span> <span class="pre">&lt;-</span> <span class="pre">df[sapply(df,</span> <span class="pre">is.numeric)]</span></code><a class="headerlink" href="#num-df-df-sapply-df-is-numeric" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Selects <strong>only the numeric columns</strong> (like Age, RawScore, DecileScore) from your data.</p></li>
 </ul>
 </section>
 <section id="corr-mat-cor-num-df-use-pairwise-complete-obs">
-<h4><code class="docutils literal notranslate"><span class="pre">corr_mat</span> <span class="pre">&lt;-</span> <span class="pre">cor(num_df,</span> <span class="pre">use</span> <span class="pre">=</span> <span class="pre">&quot;pairwise.complete.obs&quot;)</span></code><a class="headerlink" href="#corr-mat-cor-num-df-use-pairwise-complete-obs" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">corr_mat</span> <span class="pre">&lt;-</span> <span class="pre">cor(num_df,</span> <span class="pre">use</span> <span class="pre">=</span> <span class="pre">&quot;pairwise.complete.obs&quot;)</span></code><a class="headerlink" href="#corr-mat-cor-num-df-use-pairwise-complete-obs" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Calculates the <strong>correlation</strong> for each pair of numeric variables, ignoring any missing values.</p></li>
 <li><p>Each correlation value ranges from <strong>–1</strong> (perfect negative relationship) to <strong>+1</strong> (perfect positive relationship), with <strong>0</strong> meaning no linear relationship.</p></li>
 </ul>
 </section>
 <section id="corrplot-corr-mat-method-color-tl-cex-0-6">
-<h4><code class="docutils literal notranslate"><span class="pre">corrplot(corr_mat,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;color&quot;,</span> <span class="pre">tl.cex</span> <span class="pre">=</span> <span class="pre">0.6)</span></code><a class="headerlink" href="#corrplot-corr-mat-method-color-tl-cex-0-6" title="Link to this heading">#</a></h4>
+<h3><code class="docutils literal notranslate"><span class="pre">corrplot(corr_mat,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">&quot;color&quot;,</span> <span class="pre">tl.cex</span> <span class="pre">=</span> <span class="pre">0.6)</span></code><a class="headerlink" href="#corrplot-corr-mat-method-color-tl-cex-0-6" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Converts those numbers into a <strong>colored grid</strong>:</p>
 <ul>
@@ -898,7 +915,7 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 </section>
 <hr class="docutils" />
 <section id="id3">
-<h3>What you’ll see<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h2>What you’ll see<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A <strong>square grid</strong> with your variable names along the top and left edges.</p></li>
 <li><p><strong>Color intensity</strong> shows how strongly each pair of variables moves together.</p>
@@ -917,9 +934,8 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 </ul>
 </section>
 </section>
-<hr class="docutils" />
 <section id="scatterplot-matrix">
-<h2>Scatterplot Matrix<a class="headerlink" href="#scatterplot-matrix" title="Link to this heading">#</a></h2>
+<h1>Scatterplot Matrix<a class="headerlink" href="#scatterplot-matrix" title="Link to this heading">#</a></h1>
 <p><strong>What we’re doing</strong><br />
 Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each pair of numeric variables. This helps you see the actual data points and spot non-linear patterns or outliers.</p>
 <div class="cell docutils container">
@@ -941,7 +957,7 @@ Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each p
 </div>
 </div>
 <section id="id4">
-<h3>What you’ll see<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h2>What you’ll see<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>A <strong>grid of small scatter plots</strong><br />
 Each cell at row <em>i</em>, column <em>j</em> plots Variable <em>i</em> on the y-axis versus Variable <em>j</em> on the x-axis.</p></li>
@@ -961,8 +977,6 @@ Open spaces or extended tails highlight outliers or skew.</p></li>
 </ul>
 </section>
 </section>
-</section>
-<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="youre-all-set">
 <h1>🎉 You’re All Set!<a class="headerlink" href="#youre-all-set" title="Link to this heading">#</a></h1>
 <p>You’ve completed the <strong>Data Visualization</strong> module. You now know how to:</p>
@@ -1014,7 +1028,7 @@ Open spaces or extended tails highlight outliers or skew.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">04: Visualizations</p>
+        <p class="prev-next-title">Python Demo - Visualizations</p>
       </div>
     </a>
     <a class="right-next"
@@ -1042,65 +1056,58 @@ Open spaces or extended tails highlight outliers or skew.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">04: Visualizations</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">Objective:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-key-charts">Creating Key Charts</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">1. Histogram</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-histogram-of-raw-scores">What You’ll See: Histogram of Raw Scores</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#library-ggplot2"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-x-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-histogram-binwidth-2-color-black-fill-lightblue"><code class="docutils literal notranslate"><span class="pre">geom_histogram(binwidth</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">color</span> <span class="pre">=</span> <span class="pre">"black",</span> <span class="pre">fill</span> <span class="pre">=</span> <span class="pre">"lightblue")</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-histogram-of-raw-scores-x-rawscore-y-count"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"RawScore",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"Count")</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">R Demo - Visualizations</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">1. Histogram</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-histogram-of-raw-scores">What You’ll See: Histogram of Raw Scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-ggplot2"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-x-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-histogram-binwidth-2-color-black-fill-lightblue"><code class="docutils literal notranslate"><span class="pre">geom_histogram(binwidth</span> <span class="pre">=</span> <span class="pre">2,</span> <span class="pre">color</span> <span class="pre">=</span> <span class="pre">"black",</span> <span class="pre">fill</span> <span class="pre">=</span> <span class="pre">"lightblue")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-histogram-of-raw-scores-x-rawscore-y-count"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Histogram</span> <span class="pre">of</span> <span class="pre">Raw</span> <span class="pre">Scores",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"RawScore",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"Count")</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-chart">Interpreting the Chart</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">2. Box Plot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-box-plot-of-raw-scores">What You’ll See: Box Plot of Raw Scores</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-boxplot-fill-lightgreen"><code class="docutils literal notranslate"><span class="pre">geom_boxplot(fill</span> <span class="pre">=</span> <span class="pre">"lightgreen")</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-box-plot-of-raw-scores-y-rawscore">labs(title = “Box Plot of Raw Scores”, y = “RawScore”)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-plot">Interpreting the plot</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">2. Box Plot</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see-box-plot-of-raw-scores">What You’ll See: Box Plot of Raw Scores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df-aes-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df,</span> <span class="pre">aes(y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-boxplot-fill-lightgreen"><code class="docutils literal notranslate"><span class="pre">geom_boxplot(fill</span> <span class="pre">=</span> <span class="pre">"lightgreen")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-box-plot-of-raw-scores-y-rawscore">labs(title = “Box Plot of Raw Scores”, y = “RawScore”)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df2-aes-x-age-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-point-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"Age</span> <span class="pre">(years)",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"RawScore")</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-plot">Interpreting the plot</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see">What you’ll see</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df2-aes-x-age-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-point-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#labs-title-scatter-age-vs-rawscore-x-age-years-y-rawscore"><code class="docutils literal notranslate"><span class="pre">labs(title</span> <span class="pre">=</span> <span class="pre">"Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore",</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">"Age</span> <span class="pre">(years)",</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">"RawScore")</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation Matrix</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">What you’ll see</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-youll-see">What you’ll see</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">Heatmap</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#library-corrplot"><code class="docutils literal notranslate"><span class="pre">library(corrplot)</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#num-df-df-sapply-df-is-numeric"><code class="docutils literal notranslate"><span class="pre">num_df</span> <span class="pre">&lt;-</span> <span class="pre">df[sapply(df,</span> <span class="pre">is.numeric)]</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#corr-mat-cor-num-df-use-pairwise-complete-obs"><code class="docutils literal notranslate"><span class="pre">corr_mat</span> <span class="pre">&lt;-</span> <span class="pre">cor(num_df,</span> <span class="pre">use</span> <span class="pre">=</span> <span class="pre">"pairwise.complete.obs")</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#corrplot-corr-mat-method-color-tl-cex-0-6"><code class="docutils literal notranslate"><span class="pre">corrplot(corr_mat,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">"color",</span> <span class="pre">tl.cex</span> <span class="pre">=</span> <span class="pre">0.6)</span></code></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-analysis">Correlation Analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">Correlation Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">What you’ll see</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">What you’ll see</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#heatmap">Heatmap</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-heatmap">Correlation Heatmap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#library-corrplot"><code class="docutils literal notranslate"><span class="pre">library(corrplot)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#num-df-df-sapply-df-is-numeric"><code class="docutils literal notranslate"><span class="pre">num_df</span> <span class="pre">&lt;-</span> <span class="pre">df[sapply(df,</span> <span class="pre">is.numeric)]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corr-mat-cor-num-df-use-pairwise-complete-obs"><code class="docutils literal notranslate"><span class="pre">corr_mat</span> <span class="pre">&lt;-</span> <span class="pre">cor(num_df,</span> <span class="pre">use</span> <span class="pre">=</span> <span class="pre">"pairwise.complete.obs")</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corrplot-corr-mat-method-color-tl-cex-0-6"><code class="docutils literal notranslate"><span class="pre">corrplot(corr_mat,</span> <span class="pre">method</span> <span class="pre">=</span> <span class="pre">"color",</span> <span class="pre">tl.cex</span> <span class="pre">=</span> <span class="pre">0.6)</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-matrix">Scatterplot Matrix</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">What you’ll see</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">What you’ll see</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#scatterplot-matrix">Scatterplot Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">What you’ll see</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#youre-all-set">🎉 You’re All Set!</a><ul class="visible nav section-nav flex-column">
@@ -1122,7 +1129,7 @@ Open spaces or extended tails highlight outliers or skew.</p></li>
   <div class="footer-item">
     
 <p class="component-author">
-By An Introduction for IDA Staff
+By IDA CDAO
 </p>
 
   </div>

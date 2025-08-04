@@ -3,17 +3,27 @@ root: index
 title: Exploratory Data Analysis for IDA Staff
 
 chapters:
+  - file: Definition
+    title: What is EDA
+  - file: Motivation
+    title:  Motivation
+  - file: Data Cleaning
+    title: Data Cleaning 
   - file: 02_data_cleaning_Python
-    title: Data Cleaning Using Python
+    title: Python  Demo
   - file: 02_data_cleaning_R
-    title: Data Cleaning Using R
+    title: R Demo
+  - file: summary statistics
+    title: Summary Statistics
   - file: 03_summary_statistics_Python
-    title: Summary Statistics Using Python
+    title: Python Demo
   - file: 03_summary_statistics_R
-    title: Summary Statistics Using R
+    title: R Demo
+  - file: Visualizations
+    title: EDA Visualizations
   - file: 04_visualizations_Python
-    title: Visualizations Using Python
+    title: Python Demo
   - file: 04_visualizations_R
-    title: Visualizations Using R
+    title: R Demo
   - file: 06_next_steps
     title: Final Thoughts

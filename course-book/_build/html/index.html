@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/IDA-Logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="02: Data Cleaning" href="02_data_cleaning_Python.html" />
+    <link rel="next" title="Definition" href="Definition.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,15 +184,37 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Data Cleaning Using Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">Data Cleaning Using R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Definition.html">Definition</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">04: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Cleaning.html">Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Python Demo - Data Cleaning</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">R Demo - Data Cleaning</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary%20statistics.html">Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">Python Demo - Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">R Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizations.html">EDA Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">Python Demo - Visualizations</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">R Demo - Visualizations</a></li>
+
+
+
+
+
+
+
 
 <li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
@@ -426,12 +448,6 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#east-glebe-road-alexandria-virginia-22305">730 East Glebe Road · Alexandria, Virginia 22305</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exploratory Data Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-why-does-eda-even-matter">Motivation – Why does EDA even Matter?</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-data-cleaning">Next: Data Cleaning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-notebooks">Available Notebooks</a></li>
 </ul>
 </li>
 </ul>
@@ -445,7 +461,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><div align="center">
+  <div align="center">
 <section class="tex2jax_ignore mathjax_ignore" id="exploratory-data-analysis">
 <h1>Exploratory Data Analysis<a class="headerlink" href="#exploratory-data-analysis" title="Link to this heading">#</a></h1>
 <!-- logo -->
@@ -456,84 +472,10 @@ document.write(`
 <h3>Institute for Defense Analyses<a class="headerlink" href="#institute-for-defense-analyses" title="Link to this heading">#</a></h3>
 <section id="east-glebe-road-alexandria-virginia-22305">
 <h4>730 East Glebe Road · Alexandria, Virginia 22305<a class="headerlink" href="#east-glebe-road-alexandria-virginia-22305" title="Link to this heading">#</a></h4>
-<hr class="docutils" />
 </div>
 <audio controls src="audio/EDA Intro.m4a">
-<div style="display: flex; align-items: flex-start; gap: 2rem;">
-  <!-- Left column: text -->
-  <div style="flex: 1; min-width: 0;">
 </section>
 </section>
-<section id="id1">
-<h3>Exploratory Data Analysis<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p><strong>What is Exploratory Data Analysis (EDA)?</strong></p>
-<ul class="simple">
-<li><p>Systematic approach to summarizing and visualizing data before modeling</p></li>
-<li><p>Helps uncover structure, spot anomalies, test assumptions</p></li>
-</ul>
-<p><strong>Key EDA Steps</strong></p>
-<ul class="simple">
-<li><p>Data cleaning &amp; handling missing values</p></li>
-<li><p>Descriptive statistics (mean, median, variance)</p></li>
-<li><p>Visual inspections (histograms, box plots, scatterplots)</p></li>
-</ul>
-<p><strong>Why EDA First?</strong></p>
-<ul class="simple">
-<li><p>Prevents “garbage in, garbage out” in downstream analyses</p></li>
-<li><p>Builds your intuition—know your data before you trust your models</p></li>
-</ul>
-  </div>
-  <!-- Right column: image + citation -->
-  <div style="flex: 0 0 40%; text-align: center;">
-  <img src="slides/eda.png" alt="EDA illustration" width="400" style="margin-bottom: 1em;"/>
-  <p style="font-size: 0.8em; line-height: 1.2; color: #555; text-align: left;">
-  Azevedo, N (2023 July 21). _What is Exploratory Data Analysis? Steps & Examples._ Scalable Path.<br/>
-  Retrieved June 25, 2025, from <a href="https://www.scalablepath.com/data-science/exploratory-data-analysis" target="_blank">scalablepath.com/eda</a>
-  </p>
-  </div>
-</div>
-<audio controls src="audio/EDA Slide 2.m4a">
-<div style="display: flex; align-items: flex-start; gap: 2rem;">
-  <!-- Left column: text -->
-  <div style="flex: 1; min-width: 0;">
-</section>
-<section id="motivation-why-does-eda-even-matter">
-<h3>Motivation – Why does EDA even Matter?<a class="headerlink" href="#motivation-why-does-eda-even-matter" title="Link to this heading">#</a></h3>
-<p><strong>Reveals Hidden Patterns in the Data</strong><br />
-<em>which informs</em></p>
-<ul class="simple">
-<li><p><strong>Anomaly Detection</strong></p></li>
-<li><p><strong>Resource Allocation</strong></p></li>
-<li><p><strong>Operational Planning</strong></p></li>
-<li><p><strong>Risk Mitigation</strong></p></li>
-</ul>
-  </div>
-  <!-- Right column: slide image -->
-  <div style="flex: 0 0 40%; text-align: center;">
-  <img src="slides/hidden.png" alt="Motivation – Why does EDA even Matter?" style="max-width: 50%; height: auto;"/>
-  </div>
-</div>
-<audio controls src="audio/EDA Slide 3.m4a">
-</section>
-</section>
-<section id="next-data-cleaning">
-<h2>Next: Data Cleaning<a class="headerlink" href="#next-data-cleaning" title="Link to this heading">#</a></h2>
-<p>The very first step in any analysis is <strong>data cleaning</strong>. Cleaning your data—by finding missing values, fixing data types, and handling outliers—lays the groundwork for reliable, accurate results.</p>
-<p>Proceed to the Data Cleaning section to get started.</p>
-<hr class="docutils" />
-<section id="available-notebooks">
-<h3>Available Notebooks<a class="headerlink" href="#available-notebooks" title="Link to this heading">#</a></h3>
-<p>To support you as you learn the fundamentals of data cleaning, we’ve created two guided, interactive notebooks—no prior coding or data experience required:</p>
-<ul class="simple">
-<li><p><strong>Python Notebook</strong>: <code class="docutils literal notranslate"><span class="pre">01_data_cleaning_python.ipynb</span></code><br />
-Walks you through each step using the <strong>pandas</strong> library. You’ll learn how to load your dataset, spot and fill missing values, correct data types, and flag outliers—with clear explanations and examples along the way.</p></li>
-<li><p><strong>R Notebook</strong>: <code class="docutils literal notranslate"><span class="pre">01_data_cleaning_R.ipynb</span></code><br />
-Covers the exact same tasks using the <strong>tidyverse</strong> packages (<code class="docutils literal notranslate"><span class="pre">readr</span></code>, <code class="docutils literal notranslate"><span class="pre">dplyr</span></code>, <code class="docutils literal notranslate"><span class="pre">tidyr</span></code>). Each step is broken down in plain language so you can follow even if this is your first time in R.</p></li>
-</ul>
-<blockquote>
-<div><p><strong>Tip for Beginners</strong>: Start with the notebook that feels most familiar—even if neither does! Then try the other to see how the same cleaning steps look in a different tool. This side-by-side practice will build your confidence and give you flexibility for future analyses.</p>
-</div></blockquote>
-<audio controls src="audio/Intro transition.m4a"></section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -570,11 +512,11 @@ Covers the exact same tasks using the <strong>tidyverse</strong> packages (<code
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="02_data_cleaning_Python.html"
+       href="Definition.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">02: Data Cleaning</p>
+        <p class="prev-next-title">Definition</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -599,12 +541,6 @@ Covers the exact same tasks using the <strong>tidyverse</strong> packages (<code
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#east-glebe-road-alexandria-virginia-22305">730 East Glebe Road · Alexandria, Virginia 22305</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Exploratory Data Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation-why-does-eda-even-matter">Motivation – Why does EDA even Matter?</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-data-cleaning">Next: Data Cleaning</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-notebooks">Available Notebooks</a></li>
 </ul>
 </li>
 </ul>
@@ -621,7 +557,7 @@ Covers the exact same tasks using the <strong>tidyverse</strong> packages (<code
   <div class="footer-item">
     
 <p class="component-author">
-By An Introduction for IDA Staff
+By IDA CDAO
 </p>
 
   </div>

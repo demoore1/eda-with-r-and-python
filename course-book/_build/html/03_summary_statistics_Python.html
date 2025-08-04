@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>03: Summary Statistics &#8212; Exploratory Data Analysis</title>
+    <title>Python Demo - Summary Statistics &#8212; Exploratory Data Analysis</title>
   
   
   
@@ -61,8 +61,8 @@
     <link rel="icon" href="_static/IDA-Logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="03: Summary Statistics" href="03_summary_statistics_R.html" />
-    <link rel="prev" title="02: Data Cleaning" href="02_data_cleaning_R.html" />
+    <link rel="next" title="R Demo - Summary Statistics" href="03_summary_statistics_R.html" />
+    <link rel="prev" title="Summary Statistics" href="summary%20statistics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,15 +181,37 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Data Cleaning Using Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">Data Cleaning Using R</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">03: Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Definition.html">Definition</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">04: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Cleaning.html">Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Python Demo</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">R Demo</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary%20statistics.html">Summary Statistics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Demo - Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">R Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizations.html">EDA Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">Python Demo - Visualizations</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">R Demo - Visualizations</a></li>
+
+
+
+
+
+
+
 
 <li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
@@ -408,7 +430,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>03: Summary Statistics</h1>
+    <h1>Python Demo - Summary Statistics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -418,19 +440,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">03: Summary Statistics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-step-by-step">Summary Statistics: Step-by-Step</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-loading-the-data">Review: Loading the Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-mean-average">Step 1: Compute the Mean (Average)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-the-median">Step 2: Find the Median</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-get-the-mode">Step 3: Get the Mode</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-measure-how-spread-out-your-data-are">Step 4: Measure How Spread Out Your Data Are</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overall-summary">Quick Overall Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-assess-distribution-shape-skewness-kurtosis">Step 5: Assess Distribution Shape (Skewness &amp; Kurtosis)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-skewness-and-kurtosis">Interpreting Skewness and Kurtosis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-data-visualization">Next Steps: Data Visualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python Demo - Summary Statistics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-loading-the-data">Review: Loading the Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-mean-average">Step 1: Compute the Mean (Average)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-the-median">Step 2: Find the Median</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-get-the-mode">Step 3: Get the Mode</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-measure-how-spread-out-your-data-are">Step 4: Measure How Spread Out Your Data Are</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overall-summary">Quick Overall Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-assess-distribution-shape-skewness-kurtosis">Step 5: Assess Distribution Shape (Skewness &amp; Kurtosis)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-skewness-and-kurtosis">Interpreting Skewness and Kurtosis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-data-visualization">Next Steps: Data Visualization</a></li>
 </ul>
 
             </nav>
@@ -443,31 +468,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><section class="tex2jax_ignore mathjax_ignore" id="summary-statistics">
-<h1>03: Summary Statistics<a class="headerlink" href="#summary-statistics" title="Link to this heading">#</a></h1>
-<p><strong>Objective:</strong> Quickly summarize your data’s center, spread, and shape so you can spot patterns and anomalies before diving deeper.</p>
-<p><strong>Key Steps:</strong></p>
-<table width="100%">
-  <tr>
-    <td style="vertical-align: top; text-align: left; width: 60%; padding-right: 20px;">
-      <ol style="font-size: 20px; line-height: 1.4;">
-        <li>Compute central tendency (mean, median, mode)</li>
-        <li>Measure dispersion (range, variance, standard deviation, IQR)</li>
-        <li>Assess distribution shape (skewness, kurtosis)</li>
-        <li>Detect anomalies or outliers early </li>
-      </ol>
-    </td>
-    <td style="vertical-align: top; text-align: left; width: 40%;">
-      <!-- relative path to cleaning.png -->
-      <img src="slides/sum stats.png" alt="summary stats" width="1000" />
-    </td>
-  </tr>
-</table>
----
-<audio controls src="audio/summary.m4a"></section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="summary-statistics-step-by-step">
-<h1>Summary Statistics: Step-by-Step<a class="headerlink" href="#summary-statistics-step-by-step" title="Link to this heading">#</a></h1>
+  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><section class="tex2jax_ignore mathjax_ignore" id="python-demo-summary-statistics">
+<h1>Python Demo - Summary Statistics<a class="headerlink" href="#python-demo-summary-statistics" title="Link to this heading">#</a></h1>
 <p>We’ll walk through calculating key summary statistics on our COMPAS dataset in both R and Python. Each step includes:</p>
 <ol class="arabic simple">
 <li><p><strong>What we’re doing</strong> (plain English)</p></li>
@@ -485,9 +487,8 @@ document.write(`
 </div>
 </div>
 </div>
-</section>
 <section id="step-1-compute-the-mean-average">
-<h2>Step 1: Compute the Mean (Average)<a class="headerlink" href="#step-1-compute-the-mean-average" title="Link to this heading">#</a></h2>
+<h3>Step 1: Compute the Mean (Average)<a class="headerlink" href="#step-1-compute-the-mean-average" title="Link to this heading">#</a></h3>
 <p>The mean tells us the “typical” value by adding up all values and dividing by the count.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -506,7 +507,7 @@ document.write(`
 A single number (in this case, <code class="docutils literal notranslate"><span class="pre">15.557</span></code>). This is the center of your RawScore distribution. If it is positive, scores tend to be above zero; if negative, below.</p>
 </section>
 <section id="step-2-find-the-median">
-<h2>Step 2: Find the Median<a class="headerlink" href="#step-2-find-the-median" title="Link to this heading">#</a></h2>
+<h3>Step 2: Find the Median<a class="headerlink" href="#step-2-find-the-median" title="Link to this heading">#</a></h3>
 <p>The <strong>median</strong> is the middle value when you sort all the numbers. It’s less affected by extreme values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -527,9 +528,8 @@ A single number (in this case, <code class="docutils literal notranslate"><span 
 <li><p>This is the “middle” score: 50% of your data are below it and 50% are above it.</p></li>
 <li><p>If this middle number is very different from the average you calculated before, it means your data are lopsided—more values bunch up on one side than the other.</p></li>
 </ul>
-</section>
 <section id="step-3-get-the-mode">
-<h2>Step 3: Get the Mode<a class="headerlink" href="#step-3-get-the-mode" title="Link to this heading">#</a></h2>
+<h4>Step 3: Get the Mode<a class="headerlink" href="#step-3-get-the-mode" title="Link to this heading">#</a></h4>
 <p>The <strong>mode</strong> is the value that appears most often in your data. It highlights the single most common observation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -553,8 +553,9 @@ A single number (for example, <code class="docutils literal notranslate"><span c
 <li><p><strong>Helps with categorical data</strong>, by revealing the most popular category or choice.</p></li>
 </ul>
 </section>
+</section>
 <section id="step-4-measure-how-spread-out-your-data-are">
-<h2>Step 4: Measure How Spread Out Your Data Are<a class="headerlink" href="#step-4-measure-how-spread-out-your-data-are" title="Link to this heading">#</a></h2>
+<h3>Step 4: Measure How Spread Out Your Data Are<a class="headerlink" href="#step-4-measure-how-spread-out-your-data-are" title="Link to this heading">#</a></h3>
 <p>We want to know not just the “middle” of our scores but how far apart they are. We’ll use three measures:</p>
 <ul class="simple">
 <li><p><strong>Range</strong>: the gap between the smallest and largest value</p></li>
@@ -593,7 +594,7 @@ By taking the square root of the variance, we get back to the original units: on
 </ul>
 </section>
 <section id="quick-overall-summary">
-<h2>Quick Overall Summary<a class="headerlink" href="#quick-overall-summary" title="Link to this heading">#</a></h2>
+<h3>Quick Overall Summary<a class="headerlink" href="#quick-overall-summary" title="Link to this heading">#</a></h3>
 <p>Now that we’ve calculated each statistic separately, we can use one command to get them all at once. This gives you a fast “at-a-glance” view of your data’s key features.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -631,7 +632,7 @@ Name: RawScore, dtype: float64
 This one-line summary gives you a quick snapshot of where your data cluster (center), how much they vary (spread), and the key cutoff points (percentiles). It’s an essential sanity check before creating charts or running more advanced analyses.</p>
 </section>
 <section id="step-5-assess-distribution-shape-skewness-kurtosis">
-<h2>Step 5: Assess Distribution Shape (Skewness &amp; Kurtosis)<a class="headerlink" href="#step-5-assess-distribution-shape-skewness-kurtosis" title="Link to this heading">#</a></h2>
+<h3>Step 5: Assess Distribution Shape (Skewness &amp; Kurtosis)<a class="headerlink" href="#step-5-assess-distribution-shape-skewness-kurtosis" title="Link to this heading">#</a></h3>
 <p>We want to know whether our RawScore values are symmetrically distributed or lopsided, and whether they have heavy tails or are more tightly clustered than a normal bell curve.</p>
 <hr class="docutils" />
 <p><strong>What we’re doing in plain English</strong></p>
@@ -677,7 +678,7 @@ Kurtosis: 3.068529734911468
 </div>
 </section>
 <section id="interpreting-skewness-and-kurtosis">
-<h2>Interpreting Skewness and Kurtosis<a class="headerlink" href="#interpreting-skewness-and-kurtosis" title="Link to this heading">#</a></h2>
+<h3>Interpreting Skewness and Kurtosis<a class="headerlink" href="#interpreting-skewness-and-kurtosis" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Skewness: -0.294</strong><br />
 A negative value means the distribution has a longer left tail. In plain terms most scores cluster on the right but a few unusually low scores stretch out to the left</p></li>
@@ -690,15 +691,16 @@ A value of 3 matches the “normal” bell curve. This tells you your data have 
 <li><p>Normal kurtosis (3) means you don’t have more extreme values than usual, so outlier counts are typical.</p></li>
 </ul>
 </section>
-<section id="next-steps-data-visualization">
-<h2>Next Steps: Data Visualization<a class="headerlink" href="#next-steps-data-visualization" title="Link to this heading">#</a></h2>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="next-steps-data-visualization">
+<h1>Next Steps: Data Visualization<a class="headerlink" href="#next-steps-data-visualization" title="Link to this heading">#</a></h1>
 <p>We’ve completed our summary statistics and are ready to see the data in action. Choose your path:</p>
 <ol class="arabic simple">
 <li><p><strong>Visualize in R</strong> by opening <code class="docutils literal notranslate"><span class="pre">04_data_visualization_R.ipynb</span></code></p></li>
 <li><p><strong>Visualize in Python</strong> by opening <code class="docutils literal notranslate"><span class="pre">04_data_visualization_Python.ipynb</span></code></p></li>
 </ol>
 <p>Pick the notebook for your preferred language and let’s start creating charts to uncover patterns in our recidivism data!</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -732,12 +734,12 @@ A value of 3 matches the “normal” bell curve. This tells you your data have 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="02_data_cleaning_R.html"
+       href="summary%20statistics.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">02: Data Cleaning</p>
+        <p class="prev-next-title">Summary Statistics</p>
       </div>
     </a>
     <a class="right-next"
@@ -745,7 +747,7 @@ A value of 3 matches the “normal” bell curve. This tells you your data have 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">03: Summary Statistics</p>
+        <p class="prev-next-title">R Demo - Summary Statistics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -765,19 +767,22 @@ A value of 3 matches the “normal” bell curve. This tells you your data have 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">03: Summary Statistics</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-step-by-step">Summary Statistics: Step-by-Step</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-loading-the-data">Review: Loading the Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-mean-average">Step 1: Compute the Mean (Average)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-the-median">Step 2: Find the Median</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-get-the-mode">Step 3: Get the Mode</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-measure-how-spread-out-your-data-are">Step 4: Measure How Spread Out Your Data Are</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overall-summary">Quick Overall Summary</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-assess-distribution-shape-skewness-kurtosis">Step 5: Assess Distribution Shape (Skewness &amp; Kurtosis)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-skewness-and-kurtosis">Interpreting Skewness and Kurtosis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-data-visualization">Next Steps: Data Visualization</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python Demo - Summary Statistics</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#review-loading-the-data">Review: Loading the Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-compute-the-mean-average">Step 1: Compute the Mean (Average)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-find-the-median">Step 2: Find the Median</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-get-the-mode">Step 3: Get the Mode</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-measure-how-spread-out-your-data-are">Step 4: Measure How Spread Out Your Data Are</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-overall-summary">Quick Overall Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-assess-distribution-shape-skewness-kurtosis">Step 5: Assess Distribution Shape (Skewness &amp; Kurtosis)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-skewness-and-kurtosis">Interpreting Skewness and Kurtosis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-data-visualization">Next Steps: Data Visualization</a></li>
 </ul>
 
   </nav></div>
@@ -793,7 +798,7 @@ A value of 3 matches the “normal” bell curve. This tells you your data have 
   <div class="footer-item">
     
 <p class="component-author">
-By An Introduction for IDA Staff
+By IDA CDAO
 </p>
 
   </div>

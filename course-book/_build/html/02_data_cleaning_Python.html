@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>02: Data Cleaning &#8212; Exploratory Data Analysis</title>
+    <title>Python Demo - Data Cleaning &#8212; Exploratory Data Analysis</title>
   
   
   
@@ -61,8 +61,8 @@
     <link rel="icon" href="_static/IDA-Logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="02: Data Cleaning" href="02_data_cleaning_R.html" />
-    <link rel="prev" title="Exploratory Data Analysis" href="index.html" />
+    <link rel="next" title="R Demo - Data Cleaning" href="02_data_cleaning_R.html" />
+    <link rel="prev" title="Data Cleaning" href="Data%20Cleaning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,15 +181,37 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Cleaning Using Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">Data Cleaning Using R</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Definition.html">Definition</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">04: Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Motivation.html">Motivation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Cleaning.html">Data Cleaning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Python Demo - Data Cleaning</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">R Demo - Data Cleaning</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="summary%20statistics.html">Summary Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">Python Demo - Summary Statistics</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">R Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizations.html">EDA Visualizations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">Python Demo - Visualizations</a></li>
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">R Demo - Visualizations</a></li>
+
+
+
+
+
+
+
 
 <li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
@@ -408,7 +430,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>02: Data Cleaning</h1>
+    <h1>Python Demo - Data Cleaning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -418,38 +440,39 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pandas-library">Loading the Pandas Library</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-quantify-missing-data">2.1 Identify &amp; Quantify Missing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-dataset-size-and-missing-data">Checking Dataset Size and Missing Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python Demo - Data Cleaning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pandas-library">Loading the Pandas Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-quantify-missing-data">2.1 Identify &amp; Quantify Missing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-dataset-size-and-missing-data">Checking Dataset Size and Missing Data</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">2.2 Handle Missing Values</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-missing-values">Counting Missing Values</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-handling-missing-values">Options for Handling Missing Values</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#middlename-17-942-missing-values">MiddleName: 17,942 missing values</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scoretext-45-missing-values">ScoreText: 45 missing values</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#age-56-missing-values">Age: 56 missing values</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drop-mostly-empty-columns">Step 1: Drop Mostly Empty Columns</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-have">Now we have:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">2.2 Handle Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-missing-values">Counting Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-handling-missing-values">Options for Handling Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#middlename-17-942-missing-values">MiddleName: 17,942 missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scoretext-45-missing-values">ScoreText: 45 missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#age-56-missing-values">Age: 56 missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drop-mostly-empty-columns">Step 1: Drop Mostly Empty Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-have">Now we have:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-correct-data-types">2.3 Validate &amp; Correct Data Types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-5-standardize-normalize-key-variables">Step 2.5: Standardize &amp; Normalize Key Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-correct-data-types">2.3 Validate &amp; Correct Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-5-standardize-normalize-key-variables">Step 2.5: Standardize &amp; Normalize Key Variables</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-our-transformed-data">Interpreting Our Transformed Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-each-column-is">What each column is</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-do-this">Why we do this</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-6-record-your-cleaning-steps">Step 2.6: Record Your Cleaning Steps</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-our-transformed-data">Interpreting Our Transformed Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-each-column-is">What each column is</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-do-this">Why we do this</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-6-record-your-cleaning-steps">Step 2.6: Record Your Cleaning Steps</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-continue-in-python-or-switch-to-r">Next Steps: Continue in Python or Switch to R</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-continue-in-python-or-switch-to-r">Next Steps: Continue in Python or Switch to R</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -460,56 +483,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <button title="Run code" class="thebelab-button thebe-launch-button" onclick="initThebe()">Run code</button><section class="tex2jax_ignore mathjax_ignore" id="data-cleaning">
-<h1>02: Data Cleaning<a class="headerlink" href="#data-cleaning" title="Link to this heading">#</a></h1>
-<p><strong>Objective:</strong> Identify and handle missing or invalid values, detect outliers, and standardize data for our recidivism dataset.</p>
-<p><strong>Key Steps:</strong></p>
-<table width="100%">
-  <tr>
-    <td style="vertical-align: top; text-align: left; width: 60%; padding-right: 20px;">
-      <ol style="font-size: 20px; line-height: 1.4;">
-        <li>Identify &amp; quantify missing data</li>
-        <li>Handle missing values (imputation, removal, flagging)</li>
-        <li>Validate &amp; correct data types</li>
-        <li>Detect &amp; treat outliers</li>
-        <li>Standardize &amp; normalize</li>
-        <li>Document transformations</li>
-      </ol>
-    </td>
-    <td style="vertical-align: top; text-align: left; width: 40%;">
-      <!-- relative path to cleaning.png -->
-      <img src="slides/cleaning.png" alt="Data Cleaning Image" width="1000" />
-    </td>
-  </tr>
-</table>
-<hr class="docutils" />
-<audio controls src="audio/Cleaning.m4a">
+  <section id="python-demo-data-cleaning">
+<h1>Python Demo - Data Cleaning<a class="headerlink" href="#python-demo-data-cleaning" title="Link to this heading">#</a></h1>
 <p>Now that we’ve laid out our data‑cleaning roadmap, let’s put it into practice with a real dataset. For the rest of this lesson, we’ll work with the <strong>COMPAS recidivism data</strong> (<code class="docutils literal notranslate"><span class="pre">compas‑scores‑raw.csv</span></code>), which contains demographic and risk‑assessment scores for individuals screened by the COMPAS tool.</p>
 <p>We’ll start by running through each cleaning step in <strong>Python</strong>, then you are encouraged to repeat the same process in <strong>R</strong> so you can see both workflows side by side.</p>
-<p>Now that we’ve laid out our data‑cleaning roadmap, let’s put it into practice with a real dataset. For the rest of this lesson, we’ll work with the <strong>COMPAS recidivism data</strong> (<code class="docutils literal notranslate"><span class="pre">compas‑scores‑raw.csv</span></code>), which contains demographic and risk‑assessment scores for individuals screened by the COMPAS tool.</p>
-<p>We’ll start by running through each cleaning step in <strong>Python</strong>, then you are encouraged to repeat the same process in <strong>R</strong> so you can see both workflows side by side.</p>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h2>
 <p>Since this is your first time, you’ll need to download all of the little helper programs (called “packages”) we’ll use—just run one simple command to get them all at once:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_Python.txt
 </pre></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># only run this block your first time doing this training.</span>
-
-<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements_Python.txt
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: Could not open requirements file: [Errno 2] No such file or directory: &#39;requirements_Python.txt&#39;
-</pre></div>
-</div>
-</div>
-</div>
 <section id="loading-the-pandas-library">
-<h3>Loading the Pandas Library<a class="headerlink" href="#loading-the-pandas-library" title="Link to this heading">#</a></h3>
+<h2>Loading the Pandas Library<a class="headerlink" href="#loading-the-pandas-library" title="Link to this heading">#</a></h2>
 <p>Before we can work with our data in Python, we need to load the <strong>Pandas</strong> library. The line below does two things:</p>
 <ol class="arabic simple">
 <li><p><strong>Imports</strong> the Pandas module so its functions and classes become available.</p></li>
@@ -527,7 +510,7 @@ document.write(`
 </div>
 </section>
 <section id="identify-quantify-missing-data">
-<h3>2.1 Identify &amp; Quantify Missing Data<a class="headerlink" href="#identify-quantify-missing-data" title="Link to this heading">#</a></h3>
+<h2>2.1 Identify &amp; Quantify Missing Data<a class="headerlink" href="#identify-quantify-missing-data" title="Link to this heading">#</a></h2>
 <p>First, load the data and get a sense of where values are missing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -721,7 +704,7 @@ document.write(`
 </div></blockquote>
 <p>Now that we’ve successfully loaded the COMPAS dataset into our <code class="docutils literal notranslate"><span class="pre">df</span></code> object, it’s time to get a quick overview of its structure. In the next step, we’ll check how big the table is and see where any missing values might be hiding.</p>
 <section id="checking-dataset-size-and-missing-data">
-<h4>Checking Dataset Size and Missing Data<a class="headerlink" href="#checking-dataset-size-and-missing-data" title="Link to this heading">#</a></h4>
+<h3>Checking Dataset Size and Missing Data<a class="headerlink" href="#checking-dataset-size-and-missing-data" title="Link to this heading">#</a></h3>
 <p>In this step, we first look at the overall size of our dataset and then count any empty or missing values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -744,9 +727,9 @@ For example, <code class="docutils literal notranslate"><span class="pre">(24272
 </section>
 </section>
 <section id="handle-missing-values">
-<h3>2.2 Handle Missing Values<a class="headerlink" href="#handle-missing-values" title="Link to this heading">#</a></h3>
+<h2>2.2 Handle Missing Values<a class="headerlink" href="#handle-missing-values" title="Link to this heading">#</a></h2>
 <section id="counting-missing-values">
-<h4>Counting Missing Values<a class="headerlink" href="#counting-missing-values" title="Link to this heading">#</a></h4>
+<h3>Counting Missing Values<a class="headerlink" href="#counting-missing-values" title="Link to this heading">#</a></h3>
 <p>First, let’s see which columns have missing data and how many blanks each contains:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -768,21 +751,21 @@ dtype: int64
 </div>
 </section>
 <section id="options-for-handling-missing-values">
-<h4>Options for Handling Missing Values<a class="headerlink" href="#options-for-handling-missing-values" title="Link to this heading">#</a></h4>
+<h3>Options for Handling Missing Values<a class="headerlink" href="#options-for-handling-missing-values" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Removal:</strong> drop rows or columns with too many nulls</p></li>
 <li><p><strong>Imputation:</strong> fill with mean/median or a constant</p></li>
 </ul>
 <section id="middlename-17-942-missing-values">
-<h5>MiddleName: 17,942 missing values<a class="headerlink" href="#middlename-17-942-missing-values" title="Link to this heading">#</a></h5>
+<h4>MiddleName: 17,942 missing values<a class="headerlink" href="#middlename-17-942-missing-values" title="Link to this heading">#</a></h4>
 <p>Most records don’t include a middle name—since this field isn’t critical to our analysis, we’ll drop the entire column.</p>
 </section>
 <section id="scoretext-45-missing-values">
-<h5>ScoreText: 45 missing values<a class="headerlink" href="#scoretext-45-missing-values" title="Link to this heading">#</a></h5>
+<h4>ScoreText: 45 missing values<a class="headerlink" href="#scoretext-45-missing-values" title="Link to this heading">#</a></h4>
 <p>A small number of records lack the textual risk label. We’ll remove any rows where <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> is missing, since we need that label for downstream analyses.</p>
 </section>
 <section id="age-56-missing-values">
-<h5>Age: 56 missing values<a class="headerlink" href="#age-56-missing-values" title="Link to this heading">#</a></h5>
+<h4>Age: 56 missing values<a class="headerlink" href="#age-56-missing-values" title="Link to this heading">#</a></h4>
 <p>A handful of entries are missing age information. Since age is important for our analysis, we’ll impute these missing ages with the median age value.</p>
 <p>By printing only <code class="docutils literal notranslate"><span class="pre">missing[missing</span> <span class="pre">&gt;</span> <span class="pre">0]</span></code>, we focus on the columns that actually have missing entries, allowing us to target our cleaning efforts precisely.</p>
 <p>Below we’ll:</p>
@@ -792,7 +775,7 @@ dtype: int64
 </ol>
 </section>
 <section id="step-1-drop-mostly-empty-columns">
-<h5>Step 1: Drop Mostly Empty Columns<a class="headerlink" href="#step-1-drop-mostly-empty-columns" title="Link to this heading">#</a></h5>
+<h4>Step 1: Drop Mostly Empty Columns<a class="headerlink" href="#step-1-drop-mostly-empty-columns" title="Link to this heading">#</a></h4>
 <p>Our dataset has a “MiddleName” column that’s almost entirely blank. To avoid clutter, we remove any column where more than half of its values are missing. This will automatically drop “MiddleName” and any other mostly empty fields.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -804,7 +787,7 @@ dtype: int64
 </div>
 </section>
 <section id="step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">
-<h5>Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code><a class="headerlink" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age" title="Link to this heading">#</a></h5>
+<h4>Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code><a class="headerlink" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age" title="Link to this heading">#</a></h4>
 <p>First, we drop any rows where <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> is blank, since those entries don’t tell us whether someone was classified as “Low,” “Medium,” or “High” risk. After that, we flag rows with missing <code class="docutils literal notranslate"><span class="pre">Age</span></code>, compute the median age, and fill those gaps.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -823,7 +806,7 @@ dtype: int64
 </div>
 </section>
 <section id="now-we-have">
-<h5>Now we have:<a class="headerlink" href="#now-we-have" title="Link to this heading">#</a></h5>
+<h4>Now we have:<a class="headerlink" href="#now-we-have" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Removed all rows lacking a valid risk category in <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code>.</p></li>
 <li><p>Marked originally missing <code class="docutils literal notranslate"><span class="pre">Age</span></code> values in a new <code class="docutils literal notranslate"><span class="pre">age_missing</span></code> column.</p></li>
@@ -833,7 +816,7 @@ dtype: int64
 </section>
 </section>
 <section id="validate-correct-data-types">
-<h3>2.3 Validate &amp; Correct Data Types<a class="headerlink" href="#validate-correct-data-types" title="Link to this heading">#</a></h3>
+<h2>2.3 Validate &amp; Correct Data Types<a class="headerlink" href="#validate-correct-data-types" title="Link to this heading">#</a></h2>
 <p>Before we go further, let’s make sure each column uses the right data type:</p>
 <ul class="simple">
 <li><p>Numbers as integers or floats</p></li>
@@ -900,7 +883,7 @@ dtype: object
 </div></blockquote>
 </section>
 <section id="step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">
-<h3>Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code><a class="headerlink" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore" title="Link to this heading">#</a></h3>
+<h2>Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code><a class="headerlink" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore" title="Link to this heading">#</a></h2>
 <p>Even smart data can hide a few extreme values—called <strong>outliers</strong>—that skew our insights. We’ll clean those out by:</p>
 <ol class="arabic simple">
 <li><p><strong>Sorting</strong> all <code class="docutils literal notranslate"><span class="pre">RawScore</span></code> values and finding the 25th percentile (Q1) and 75th percentile (Q3).</p></li>
@@ -948,7 +931,7 @@ Rows after removing outliers: 24263
 </div></blockquote>
 </section>
 <section id="step-2-5-standardize-normalize-key-variables">
-<h3>Step 2.5: Standardize &amp; Normalize Key Variables<a class="headerlink" href="#step-2-5-standardize-normalize-key-variables" title="Link to this heading">#</a></h3>
+<h2>Step 2.5: Standardize &amp; Normalize Key Variables<a class="headerlink" href="#step-2-5-standardize-normalize-key-variables" title="Link to this heading">#</a></h2>
 <p>Some analysis methods work best when numbers share a common scale. We’ll use two popular Python libraries:</p>
 <ul class="simple">
 <li><p><strong>SciPy</strong> (<code class="docutils literal notranslate"><span class="pre">scipy</span></code>): a scientific computing library that includes statistical functions, like calculating z‑scores.</p></li>
@@ -988,13 +971,13 @@ Rows after removing outliers: 24263
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\demoore\AppData\Local\Temp\ipykernel_9048\2835621474.py:5: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\demoore\AppData\Local\Temp\ipykernel_18456\2835621474.py:5: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
   df_clean.loc[:, &quot;age_z&quot;] = stats.zscore(df_clean[&quot;Age&quot;])
-C:\Users\demoore\AppData\Local\Temp\ipykernel_9048\2835621474.py:9: SettingWithCopyWarning: 
+C:\Users\demoore\AppData\Local\Temp\ipykernel_18456\2835621474.py:9: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
@@ -1069,7 +1052,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </section>
 </section>
 <section id="interpreting-our-transformed-data">
-<h2>Interpreting Our Transformed Data<a class="headerlink" href="#interpreting-our-transformed-data" title="Link to this heading">#</a></h2>
+<h1>Interpreting Our Transformed Data<a class="headerlink" href="#interpreting-our-transformed-data" title="Link to this heading">#</a></h1>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Age</p></th>
@@ -1103,7 +1086,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </table>
 </div>
 <section id="what-each-column-is">
-<h3>What each column is<a class="headerlink" href="#what-each-column-is" title="Link to this heading">#</a></h3>
+<h2>What each column is<a class="headerlink" href="#what-each-column-is" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Age</strong><br />
 The actual age in years</p></li>
@@ -1130,7 +1113,7 @@ The RawScore rescaled to lie between 0 and 1</p>
 </ul>
 </section>
 <section id="why-we-do-this">
-<h3>Why we do this<a class="headerlink" href="#why-we-do-this" title="Link to this heading">#</a></h3>
+<h2>Why we do this<a class="headerlink" href="#why-we-do-this" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Fair comparison</strong><br />
 When columns use very different units or ranges our analysis can get biased. Standardizing and scaling puts all numbers on the same footing.</p></li>
@@ -1147,7 +1130,7 @@ Many data tools and machine learning methods work best when inputs live on the s
 <p>In plain terms, we’ve “translated” every number so they all speak the same language. That helps our next analysis steps work properly and gives you a fair way to compare apples to apples.</p>
 </section>
 <section id="step-2-6-record-your-cleaning-steps">
-<h3>Step 2.6: Record Your Cleaning Steps<a class="headerlink" href="#step-2-6-record-your-cleaning-steps" title="Link to this heading">#</a></h3>
+<h2>Step 2.6: Record Your Cleaning Steps<a class="headerlink" href="#step-2-6-record-your-cleaning-steps" title="Link to this heading">#</a></h2>
 <p>Finally, it’s best practice to keep a log of every transformation. Below we build a simple dictionary summarizing what we did:</p>
 <ul class="simple">
 <li><p>Which columns we dropped because they were mostly empty</p></li>
@@ -1238,14 +1221,13 @@ A clear transformation log makes your work reproducible and lets others (or futu
 </section>
 </section>
 <section id="next-steps-continue-in-python-or-switch-to-r">
-<h2>Next Steps: Continue in Python or Switch to R<a class="headerlink" href="#next-steps-continue-in-python-or-switch-to-r" title="Link to this heading">#</a></h2>
+<h1>Next Steps: Continue in Python or Switch to R<a class="headerlink" href="#next-steps-continue-in-python-or-switch-to-r" title="Link to this heading">#</a></h1>
 <p>Our data is now clean and properly formatted. You have two options:</p>
 <ol class="arabic simple">
 <li><p><strong>Try the R version</strong> of this cleaning workflow by opening <code class="docutils literal notranslate"><span class="pre">02_data_cleaning_R.ipynb</span></code>.</p></li>
 <li><p><strong>Move on to summary statistics in Python</strong> by opening <code class="docutils literal notranslate"><span class="pre">03_summary_statistics_Python.ipynb</span></code>.</p></li>
 </ol>
 <p>Choose the notebook that matches your preferred language, and let’s continue exploring our recidivism dataset!</p>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1279,12 +1261,12 @@ A clear transformation log makes your work reproducible and lets others (or futu
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="Data%20Cleaning.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Exploratory Data Analysis</p>
+        <p class="prev-next-title">Data Cleaning</p>
       </div>
     </a>
     <a class="right-next"
@@ -1292,7 +1274,7 @@ A clear transformation log makes your work reproducible and lets others (or futu
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">02: Data Cleaning</p>
+        <p class="prev-next-title">R Demo - Data Cleaning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1312,38 +1294,39 @@ A clear transformation log makes your work reproducible and lets others (or futu
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pandas-library">Loading the Pandas Library</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-quantify-missing-data">2.1 Identify &amp; Quantify Missing Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-dataset-size-and-missing-data">Checking Dataset Size and Missing Data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Python Demo - Data Cleaning</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-the-pandas-library">Loading the Pandas Library</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identify-quantify-missing-data">2.1 Identify &amp; Quantify Missing Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-dataset-size-and-missing-data">Checking Dataset Size and Missing Data</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">2.2 Handle Missing Values</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-missing-values">Counting Missing Values</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-handling-missing-values">Options for Handling Missing Values</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#middlename-17-942-missing-values">MiddleName: 17,942 missing values</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#scoretext-45-missing-values">ScoreText: 45 missing values</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#age-56-missing-values">Age: 56 missing values</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drop-mostly-empty-columns">Step 1: Drop Mostly Empty Columns</a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-have">Now we have:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#handle-missing-values">2.2 Handle Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-missing-values">Counting Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#options-for-handling-missing-values">Options for Handling Missing Values</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#middlename-17-942-missing-values">MiddleName: 17,942 missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#scoretext-45-missing-values">ScoreText: 45 missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#age-56-missing-values">Age: 56 missing values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-drop-mostly-empty-columns">Step 1: Drop Mostly Empty Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-remove-rows-with-blank-scoretext-and-fill-missing-age">Step 2: Remove Rows with Blank <code class="docutils literal notranslate"><span class="pre">ScoreText</span></code> and Fill Missing <code class="docutils literal notranslate"><span class="pre">Age</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-have">Now we have:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-correct-data-types">2.3 Validate &amp; Correct Data Types</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-5-standardize-normalize-key-variables">Step 2.5: Standardize &amp; Normalize Key Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validate-correct-data-types">2.3 Validate &amp; Correct Data Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-4-find-and-remove-extreme-values-outliers-in-rawscore">Step 2.4: Find and Remove Extreme Values (Outliers) in <code class="docutils literal notranslate"><span class="pre">RawScore</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-5-standardize-normalize-key-variables">Step 2.5: Standardize &amp; Normalize Key Variables</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-our-transformed-data">Interpreting Our Transformed Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-each-column-is">What each column is</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-do-this">Why we do this</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-6-record-your-cleaning-steps">Step 2.6: Record Your Cleaning Steps</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-our-transformed-data">Interpreting Our Transformed Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-each-column-is">What each column is</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-do-this">Why we do this</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-6-record-your-cleaning-steps">Step 2.6: Record Your Cleaning Steps</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-continue-in-python-or-switch-to-r">Next Steps: Continue in Python or Switch to R</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps-continue-in-python-or-switch-to-r">Next Steps: Continue in Python or Switch to R</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
@@ -1357,7 +1340,7 @@ A clear transformation log makes your work reproducible and lets others (or futu
   <div class="footer-item">
     
 <p class="component-author">
-By An Introduction for IDA Staff
+By IDA CDAO
 </p>
 
   </div>
