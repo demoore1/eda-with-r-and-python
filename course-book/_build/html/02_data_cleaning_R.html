@@ -57,8 +57,6 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '02_data_cleaning_R';</script>
     <link rel="icon" href="_static/IDA-Logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -183,8 +181,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">02: Data Cleaning</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Data Cleaning Using Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Cleaning Using R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
@@ -193,7 +191,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">You’ve Finished Exploratory Data Analysis!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
 
     </div>
@@ -485,12 +483,12 @@ document.write(`
     </td>
     <td style="vertical-align: top; text-align: left; width: 40%;">
       <!-- relative path to cleaning.png -->
-      <img src="../slides/cleaning.png" alt="Data Cleaning Image" width="1000" />
+      <img src="slides/cleaning.png" alt="Data Cleaning Image" width="1000" />
     </td>
   </tr>
 </table>
 <hr class="docutils" />
-<audio controls src="../audio/Cleaning.m4a"><p>Now that we’ve laid out our data‑cleaning roadmap, let’s put it into practice with a real dataset. For the rest of this lesson, we’ll work with the <strong>COMPAS recidivism data</strong> (<code class="docutils literal notranslate"><span class="pre">compas‑scores‑raw.csv</span></code>), which contains demographic and risk‑assessment scores for individuals screened by the COMPAS tool.</p>
+<audio controls src="audio/Cleaning.m4a"><p>Now that we’ve laid out our data‑cleaning roadmap, let’s put it into practice with a real dataset. For the rest of this lesson, we’ll work with the <strong>COMPAS recidivism data</strong> (<code class="docutils literal notranslate"><span class="pre">compas‑scores‑raw.csv</span></code>), which contains demographic and risk‑assessment scores for individuals screened by the COMPAS tool.</p>
 <p>We’ll start by running through each cleaning step in <strong>R</strong>, then you are encouraged to repeat the same process in <strong>Python</strong> so you can see both workflows side by side.</p>
 <section id="r">
 <h2>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h2>
@@ -500,7 +498,7 @@ document.write(`
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># only run this block your first time doing this training.</span>
 
 
-<span class="n">pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scan</span><span class="p">(</span><span class="s">&quot;../requirements_R.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="n">pkgs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">scan</span><span class="p">(</span><span class="s">&quot;requirements_R.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
 <span class="nf">install.packages</span><span class="p">(</span>
 <span class="w">  </span><span class="n">pkgs</span><span class="p">,</span>
 <span class="w">  </span><span class="n">repos</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://cloud.r-project.org&quot;</span><span class="p">,</span>
@@ -510,28 +508,22 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing packages into &#39;C:/Users/demoore/AppData/Local/R/win-library/4.4&#39;
-(as &#39;lib&#39; is unspecified)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(file, &quot;r&quot;):
+&quot;cannot open file &#39;requirements_R.txt&#39;: No such file or directory&quot;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;dependency &#39;RDCOMClient&#39; is not available&quot;
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;tidyverse&#39; successfully unpacked and MD5 sums checked
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;lubridate&#39; successfully unpacked and MD5 sums checked
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;DescTools&#39; successfully unpacked and MD5 sums checked
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;corrplot&#39; successfully unpacked and MD5 sums checked
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	C:\Users\demoore\AppData\Local\Temp\RtmpKyML6I\downloaded_packages
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">):</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">connection</span>
+<span class="ne">Traceback</span>:
+
+<span class="mi">1</span><span class="o">.</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="mi">2</span><span class="o">.</span> <span class="o">.</span><span class="n">handleSimpleError</span><span class="p">(</span><span class="n">function</span> <span class="p">(</span><span class="n">cnd</span><span class="p">)</span> 
+ <span class="o">.</span> <span class="p">{</span>
+ <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">capture_plot_and_output</span><span class="p">()</span>
+ <span class="o">.</span>     <span class="n">cnd</span> <span class="o">&lt;-</span> <span class="n">sanitize_call</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">watcher</span><span class="err">$</span><span class="n">push</span><span class="p">(</span><span class="n">cnd</span><span class="p">)</span>
+ <span class="o">.</span>     <span class="n">switch</span><span class="p">(</span><span class="n">on_error</span><span class="p">,</span> <span class="k">continue</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_continue&quot;</span><span class="p">),</span> 
+ <span class="o">.</span>         <span class="n">stop</span> <span class="o">=</span> <span class="n">invokeRestart</span><span class="p">(</span><span class="s2">&quot;eval_stop&quot;</span><span class="p">),</span> <span class="n">error</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">)</span>
+ <span class="o">.</span> <span class="p">},</span> <span class="s2">&quot;cannot open the connection&quot;</span><span class="p">,</span> <span class="n">base</span><span class="p">::</span><span class="n">quote</span><span class="p">(</span><span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -549,62 +541,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;tidyverse&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;ggplot2&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;tibble&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;tidyr&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;readr&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;purrr&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;dplyr&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;stringr&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;forcats&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
-&quot;package &#39;lubridate&#39; was built under R version 4.4.3&quot;
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────────── tidyverse 2.0.0 ──
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">lubridate</span> 1.9.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tidyr    </span> 1.3.1
-<span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.4     
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────── tidyverse_conflicts() ──
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
-<span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
-<span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
 </pre></div>
 </div>
 </div>
@@ -639,22 +575,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the COMPAS scores data into R</span>
-<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">24272</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">24</span>
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────</span>
-<span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
-<span class=" -Color -Color-Red">chr</span> (15): Agency_Text, LastName, FirstName, MiddleName, Sex_Code_Text, Ethni...
-<span class=" -Color -Color-Green">dbl</span>  (9): Person_ID, AssessmentID, Case_ID, ScaleSet_ID, RecSupervisionLevel...
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">ℹ</span> Use `spec()` to retrieve the full column specification for this data.
-<span class=" -Color -Color-Cyan">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -666,23 +587,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 6 × 24</caption>
-<thead>
-	<tr><th scope=col>Person_ID</th><th scope=col>AssessmentID</th><th scope=col>Case_ID</th><th scope=col>Agency_Text</th><th scope=col>LastName</th><th scope=col>FirstName</th><th scope=col>MiddleName</th><th scope=col>Sex_Code_Text</th><th scope=col>Ethnic_Code_Text</th><th scope=col>ScaleSet_ID</th><th scope=col>⋯</th><th scope=col>MaritalStatus</th><th scope=col>RecSupervisionLevel</th><th scope=col>RecSupervisionLevelText</th><th scope=col>Scale_ID</th><th scope=col>DisplayText</th><th scope=col>RawScore</th><th scope=col>DecileScore</th><th scope=col>ScoreText</th><th scope=col>AssessmentType</th><th scope=col>Age</th></tr>
-	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>50844</td><td>57167</td><td>51950</td><td>PRETRIAL</td><td>Fisher  </td><td>Kevin    </td><td>NA    </td><td>Male  </td><td>Caucasian       </td><td>22</td><td>⋯</td><td>Single           </td><td>1</td><td>Low   </td><td>18</td><td>Risk of Failure to Appear</td><td>15.00</td><td>1</td><td>Low </td><td>New</td><td>20</td></tr>
-	<tr><td>50848</td><td>57174</td><td>51956</td><td>PRETRIAL</td><td>KENDALL </td><td>KEVIN    </td><td>NA    </td><td>Male  </td><td>Caucasian       </td><td>22</td><td>⋯</td><td>Married          </td><td>1</td><td>Low   </td><td>18</td><td>Risk of Failure to Appear</td><td>19.00</td><td>3</td><td>Low </td><td>New</td><td>28</td></tr>
-	<tr><td>50855</td><td>57181</td><td>51963</td><td>PRETRIAL</td><td>DAYES   </td><td>DANIEL   </td><td>NA    </td><td>Male  </td><td>African-American</td><td>22</td><td>⋯</td><td>Single           </td><td>4</td><td>High  </td><td> 8</td><td>Risk of Recidivism       </td><td> 0.18</td><td>8</td><td>High</td><td>New</td><td>18</td></tr>
-	<tr><td>50855</td><td>57181</td><td>51963</td><td>PRETRIAL</td><td>DAYES   </td><td>DANIEL   </td><td>NA    </td><td>Male  </td><td>African-American</td><td>22</td><td>⋯</td><td>Single           </td><td>4</td><td>High  </td><td>18</td><td>Risk of Failure to Appear</td><td>13.00</td><td>1</td><td>Low </td><td>New</td><td>18</td></tr>
-	<tr><td>50850</td><td>57176</td><td>51958</td><td>PRETRIAL</td><td>Debe    </td><td>Mikerlie </td><td>George</td><td>Female</td><td>African-American</td><td>22</td><td>⋯</td><td>Significant Other</td><td>2</td><td>Medium</td><td>18</td><td>Risk of Failure to Appear</td><td>11.00</td><td>1</td><td>Low </td><td>New</td><td>18</td></tr>
-	<tr><td>50839</td><td>57162</td><td>51945</td><td>PRETRIAL</td><td>McLaurin</td><td>Stephanie</td><td>Nicole</td><td>Female</td><td>African-American</td><td>22</td><td>⋯</td><td>Single           </td><td>1</td><td>Low   </td><td>18</td><td>Risk of Failure to Appear</td><td>16.00</td><td>2</td><td>Low </td><td>New</td><td>27</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 <blockquote>
 <div><p><strong>What to look for in the output:</strong></p>
@@ -699,63 +603,6 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>spc_tbl_ [24,272 × 24] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
- $ Person_ID              : num [1:24272] 50844 50848 50855 50855 50850 ...
- $ AssessmentID           : num [1:24272] 57167 57174 57181 57181 57176 ...
- $ Case_ID                : num [1:24272] 51950 51956 51963 51963 51958 ...
- $ Agency_Text            : chr [1:24272] &quot;PRETRIAL&quot; &quot;PRETRIAL&quot; &quot;PRETRIAL&quot; &quot;PRETRIAL&quot; ...
- $ LastName               : chr [1:24272] &quot;Fisher&quot; &quot;KENDALL&quot; &quot;DAYES&quot; &quot;DAYES&quot; ...
- $ FirstName              : chr [1:24272] &quot;Kevin&quot; &quot;KEVIN&quot; &quot;DANIEL&quot; &quot;DANIEL&quot; ...
- $ MiddleName             : chr [1:24272] NA NA NA NA ...
- $ Sex_Code_Text          : chr [1:24272] &quot;Male&quot; &quot;Male&quot; &quot;Male&quot; &quot;Male&quot; ...
- $ Ethnic_Code_Text       : chr [1:24272] &quot;Caucasian&quot; &quot;Caucasian&quot; &quot;African-American&quot; &quot;African-American&quot; ...
- $ ScaleSet_ID            : num [1:24272] 22 22 22 22 22 22 22 22 22 22 ...
- $ ScaleSet               : chr [1:24272] &quot;Risk and Prescreen&quot; &quot;Risk and Prescreen&quot; &quot;Risk and Prescreen&quot; &quot;Risk and Prescreen&quot; ...
- $ Language               : chr [1:24272] &quot;English&quot; &quot;English&quot; &quot;English&quot; &quot;English&quot; ...
- $ LegalStatus            : chr [1:24272] &quot;Pretrial&quot; &quot;Pretrial&quot; &quot;Pretrial&quot; &quot;Pretrial&quot; ...
- $ CustodyStatus          : chr [1:24272] &quot;Jail Inmate&quot; &quot;Jail Inmate&quot; &quot;Jail Inmate&quot; &quot;Jail Inmate&quot; ...
- $ MaritalStatus          : chr [1:24272] &quot;Single&quot; &quot;Married&quot; &quot;Single&quot; &quot;Single&quot; ...
- $ RecSupervisionLevel    : num [1:24272] 1 1 4 4 2 1 3 3 1 3 ...
- $ RecSupervisionLevelText: chr [1:24272] &quot;Low&quot; &quot;Low&quot; &quot;High&quot; &quot;High&quot; ...
- $ Scale_ID               : num [1:24272] 18 18 8 18 18 18 8 18 18 8 ...
- $ DisplayText            : chr [1:24272] &quot;Risk of Failure to Appear&quot; &quot;Risk of Failure to Appear&quot; &quot;Risk of Recidivism&quot; &quot;Risk of Failure to Appear&quot; ...
- $ RawScore               : num [1:24272] 15 19 0.18 13 11 16 0.71 24 19 0.38 ...
- $ DecileScore            : num [1:24272] 1 3 8 1 1 2 10 6 3 9 ...
- $ ScoreText              : chr [1:24272] &quot;Low&quot; &quot;Low&quot; &quot;High&quot; &quot;Low&quot; ...
- $ AssessmentType         : chr [1:24272] &quot;New&quot; &quot;New&quot; &quot;New&quot; &quot;New&quot; ...
- $ Age                    : num [1:24272] 20 28 18 18 18 27 28 28 46 19 ...
- - attr(*, &quot;spec&quot;)=
-  .. cols(
-  ..   Person_ID = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   AssessmentID = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   Case_ID = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   Agency_Text = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   LastName = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   FirstName = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   MiddleName = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   Sex_Code_Text = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   Ethnic_Code_Text = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   ScaleSet_ID = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   ScaleSet = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   Language = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   LegalStatus = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   CustodyStatus = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   MaritalStatus = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   RecSupervisionLevel = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   RecSupervisionLevelText = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   Scale_ID = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   DisplayText = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   RawScore = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   DecileScore = <span class=" -Color -Color-Green">col_double()</span>,
-  ..   ScoreText = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   AssessmentType = <span class=" -Color -Color-Red">col_character()</span>,
-  ..   Age = <span class=" -Color -Color-Green">col_double()</span>
-  .. )
- - attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
 </pre></div>
 </div>
 </div>
@@ -802,15 +649,6 @@ Each line looks like</p>
 <span class="c1"># Show only columns that have any missing values</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Missing values per column:\n&quot;</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">missing</span><span class="p">[</span><span class="n">missing</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Missing values per column:
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MiddleName  ScoreText        Age 
-     17942         45         56 
 </pre></div>
 </div>
 </div>
@@ -911,35 +749,6 @@ Each line looks like</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tibble [24,272 × 24] (S3: tbl_df/tbl/data.frame)
- $ Person_ID              : num [1:24272] 50844 50848 50855 50855 50850 ...
- $ AssessmentID           : num [1:24272] 57167 57174 57181 57181 57176 ...
- $ Case_ID                : num [1:24272] 51950 51956 51963 51963 51958 ...
- $ Agency_Text            : chr [1:24272] &quot;PRETRIAL&quot; &quot;PRETRIAL&quot; &quot;PRETRIAL&quot; &quot;PRETRIAL&quot; ...
- $ LastName               : chr [1:24272] &quot;Fisher&quot; &quot;KENDALL&quot; &quot;DAYES&quot; &quot;DAYES&quot; ...
- $ FirstName              : chr [1:24272] &quot;Kevin&quot; &quot;KEVIN&quot; &quot;DANIEL&quot; &quot;DANIEL&quot; ...
- $ Sex_Code_Text          : Factor w/ 2 levels &quot;Female&quot;,&quot;Male&quot;: 2 2 2 2 1 1 2 2 1 2 ...
- $ Ethnic_Code_Text       : Factor w/ 9 levels &quot;African-Am&quot;,&quot;African-American&quot;,..: 5 5 2 2 2 2 6 6 5 2 ...
- $ ScaleSet_ID            : num [1:24272] 22 22 22 22 22 22 22 22 22 22 ...
- $ ScaleSet               : chr [1:24272] &quot;Risk and Prescreen&quot; &quot;Risk and Prescreen&quot; &quot;Risk and Prescreen&quot; &quot;Risk and Prescreen&quot; ...
- $ Language               : Factor w/ 2 levels &quot;English&quot;,&quot;Spanish&quot;: 1 1 1 1 1 1 1 1 1 1 ...
- $ LegalStatus            : chr [1:24272] &quot;Pretrial&quot; &quot;Pretrial&quot; &quot;Pretrial&quot; &quot;Pretrial&quot; ...
- $ CustodyStatus          : chr [1:24272] &quot;Jail Inmate&quot; &quot;Jail Inmate&quot; &quot;Jail Inmate&quot; &quot;Jail Inmate&quot; ...
- $ MaritalStatus          : Factor w/ 7 levels &quot;Divorced&quot;,&quot;Married&quot;,..: 5 2 5 5 4 5 5 5 5 5 ...
- $ RecSupervisionLevel    : num [1:24272] 1 1 4 4 2 1 3 3 1 3 ...
- $ RecSupervisionLevelText: Factor w/ 4 levels &quot;High&quot;,&quot;Low&quot;,&quot;Medium&quot;,..: 2 2 1 1 3 2 4 4 2 4 ...
- $ Scale_ID               : num [1:24272] 18 18 8 18 18 18 8 18 18 8 ...
- $ DisplayText            : chr [1:24272] &quot;Risk of Failure to Appear&quot; &quot;Risk of Failure to Appear&quot; &quot;Risk of Recidivism&quot; &quot;Risk of Failure to Appear&quot; ...
- $ RawScore               : int [1:24272] 15 19 0 13 11 16 0 24 19 0 ...
- $ DecileScore            : int [1:24272] 1 3 8 1 1 2 10 6 3 9 ...
- $ ScoreText              : Factor w/ 3 levels &quot;High&quot;,&quot;Low&quot;,&quot;Medium&quot;: 2 2 1 2 2 2 1 3 2 1 ...
- $ AssessmentType         : chr [1:24272] &quot;New&quot; &quot;New&quot; &quot;New&quot; &quot;New&quot; ...
- $ Age                    : int [1:24272] 20 28 18 18 18 27 28 28 46 19 ...
- $ age_missing            : logi [1:24272] FALSE FALSE FALSE FALSE FALSE FALSE ...
-</pre></div>
-</div>
-</div>
 </div>
 <blockquote>
 <div><p><strong>What we’ve done:</strong></p>
@@ -979,14 +788,6 @@ Each line looks like</p>
 <span class="c1"># 5. Report how many rows we kept versus removed</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Rows before cleaning: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 <span class="nf">cat</span><span class="p">(</span><span class="s">&quot;Rows after removing outliers: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">nrow</span><span class="p">(</span><span class="n">df_clean</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows before cleaning:  24272 
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rows after removing outliers:  24263 
 </pre></div>
 </div>
 </div>
@@ -1037,23 +838,6 @@ Each line looks like</p>
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><table class="dataframe">
-<caption>A tibble: 6 × 4</caption>
-<thead>
-	<tr><th scope=col>Age</th><th scope=col>age_z</th><th scope=col>RawScore</th><th scope=col>rawscore_scaled</th></tr>
-	<tr><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
-</thead>
-<tbody>
-	<tr><td>20</td><td>-1.0581198</td><td>15</td><td>0.3333333</td></tr>
-	<tr><td>28</td><td>-0.3877174</td><td>19</td><td>0.4222222</td></tr>
-	<tr><td>18</td><td>-1.2257204</td><td> 0</td><td>0.0000000</td></tr>
-	<tr><td>18</td><td>-1.2257204</td><td>13</td><td>0.2888889</td></tr>
-	<tr><td>18</td><td>-1.2257204</td><td>11</td><td>0.2444444</td></tr>
-	<tr><td>27</td><td>-0.4715177</td><td>16</td><td>0.3555556</td></tr>
-</tbody>
-</table>
-</div></div>
 </div>
 </section>
 </section>
@@ -1173,16 +957,6 @@ Many data tools and machine learning methods work best when inputs live on the s
 
 <span class="c1"># 3. Display the log</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">log_df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                       Step      Details
-1           Dropped Columns   MiddleName
-2               Imputed Age           29
-3 Outlier Bounds (RawScore)      -11, 45
-4              Standardized        age_z
-5                Normalized rawscore....
 </pre></div>
 </div>
 </div>

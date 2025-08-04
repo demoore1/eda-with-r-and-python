@@ -1,11 +1,19 @@
 format: jb-book
 root: index
+title: Exploratory Data Analysis for IDA Staff
 
 chapters:
   - file: 02_data_cleaning_Python
+    title: Data Cleaning Using Python
   - file: 02_data_cleaning_R
+    title: Data Cleaning Using R
   - file: 03_summary_statistics_Python
+    title: Summary Statistics Using Python
   - file: 03_summary_statistics_R
+    title: Summary Statistics Using R
   - file: 04_visualizations_Python
+    title: Visualizations Using Python
   - file: 04_visualizations_R
+    title: Visualizations Using R
   - file: 06_next_steps
+    title: Final Thoughts

@@ -181,8 +181,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">02: Data Cleaning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Data Cleaning Using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">Data Cleaning Using R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
@@ -191,7 +191,7 @@
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">04: Visualizations</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">You’ve Finished Exploratory Data Analysis!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
 
     </div>
@@ -447,7 +447,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("../data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df2-aes-x-age-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-point-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
@@ -513,14 +513,14 @@ document.write(`
     </td>
     <td style="vertical-align: top; text-align: left; width: 40%;">
    <!-- relative path to visualizations.png -->
-      <img src="../slides/visualizations.png" alt="data vis" width="1000" />
+      <img src="slides/visualizations.png" alt="data vis" width="1000" />
     </td>
   </tr>
 </table>
 <section id="by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">
 <h3>By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.<a class="headerlink" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before" title="Link to this heading">#</a></h3>
 <hr class="docutils" />
-<audio controls src="../audio/Visualization.m4a"></section>
+<audio controls src="audio/Visualization.m4a"></section>
 <hr class="docutils" />
 <section id="creating-key-charts">
 <h3>Creating Key Charts<a class="headerlink" href="#creating-key-charts" title="Link to this heading">#</a></h3>
@@ -541,7 +541,7 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 
 <span class="c1">#load the data</span>
-<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 
 <span class="c1">#generate the plot</span>
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RawScore</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
@@ -693,7 +693,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scatter plot of Age vs RawScore</span>
-<span class="n">df2</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;../data/compas_sample_new.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/compas_sample_new.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 
 <span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">               </span><span class="c1"># load ggplot2 for plotting</span>
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="w"> </span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RawScore</span><span class="p">))</span><span class="w"> </span><span class="o">+</span>
@@ -708,7 +708,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </div>
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in file(file, &quot;rt&quot;):
-&quot;cannot open file &#39;../data/compas_sample_new.csv&#39;: No such file or directory&quot;
+&quot;cannot open file &#39;data/compas_sample_new.csv&#39;: No such file or directory&quot;
 </pre></div>
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span> <span class="ow">in</span> <span class="n">file</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s2">&quot;rt&quot;</span><span class="p">):</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">the</span> <span class="n">connection</span>
@@ -733,7 +733,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <h3>Scatter Plot of Age vs RawScore<a class="headerlink" href="#scatter-plot-of-age-vs-rawscore" title="Link to this heading">#</a></h3>
 <p>We’ll walk through how to read the scatter plot you just created. Even if you’ve never worked with data before, this step-by-step guide will clarify exactly what each part of the R code is doing and what the resulting chart tells you.</p>
 <section id="df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false">
-<h4><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv(&quot;../data/compas_sample_new.csv&quot;,</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code><a class="headerlink" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv(&quot;data/compas_sample_new.csv&quot;,</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code><a class="headerlink" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Reads your sample data (150 rows) into a data frame named <strong>df2</strong>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> keeps any text columns as plain text, not factors.</p></li>
@@ -808,7 +808,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Load your data</span>
-<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 
 <span class="c1"># 2. Keep only numeric columns</span>
 <span class="n">num_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="nf">sapply</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)]</span>
@@ -840,7 +840,7 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># provides easy correlation plotting</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">corrplot</span><span class="p">)</span>
-<span class="n">df</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;../data/compas_scores_positive.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">df</span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/compas_scores_positive.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 <span class="c1"># 2. Select only the columns with numbers</span>
 <span class="n">num_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="nf">sapply</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)]</span><span class="w">  </span>
 
@@ -857,10 +857,6 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 <span class="nf">corrplot</span><span class="p">(</span><span class="n">corr_mat</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;color&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">tl.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/4a6fb0fc022ce04fe447ae6de0aa241ed5e5feb0a6009195b5aed5491b289d69.png"><img alt="_images/4a6fb0fc022ce04fe447ae6de0aa241ed5e5feb0a6009195b5aed5491b289d69.png" src="_images/4a6fb0fc022ce04fe447ae6de0aa241ed5e5feb0a6009195b5aed5491b289d69.png" style="width: 420px; height: 420px;" />
-</a>
 </div>
 </div>
 <section id="correlation-heatmap">
@@ -929,7 +925,7 @@ Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each p
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. (If not already) load your data and numeric subset</span>
-<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
 <span class="n">num_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="nf">sapply</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)]</span>
 
 <span class="c1"># 2. Draw the scatterplot matrix</span>
@@ -942,10 +938,6 @@ Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each p
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="_images/6ea2eddd82e967214b2e1c8323fe0133cc2cb76ad5c8b65ee79362fdd907bc4b.png"><img alt="_images/6ea2eddd82e967214b2e1c8323fe0133cc2cb76ad5c8b65ee79362fdd907bc4b.png" src="_images/6ea2eddd82e967214b2e1c8323fe0133cc2cb76ad5c8b65ee79362fdd907bc4b.png" style="width: 420px; height: 420px;" />
-</a>
 </div>
 </div>
 <section id="id4">
@@ -1079,7 +1071,7 @@ Open spaces or extended tails highlight outliers or skew.</p></li>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3. Scatter Plot</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot-of-age-vs-rawscore">Scatter Plot of Age vs RawScore</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("../data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df2-read-csv-data-compas-sample-new-csv-stringsasfactors-false"><code class="docutils literal notranslate"><span class="pre">df2</span> <span class="pre">&lt;-</span> <span class="pre">read.csv("data/compas_sample_new.csv",</span> <span class="pre">stringsAsFactors</span> <span class="pre">=</span> <span class="pre">FALSE)</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">library(ggplot2)</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ggplot-df2-aes-x-age-y-rawscore"><code class="docutils literal notranslate"><span class="pre">ggplot(df2,</span> <span class="pre">aes(x</span> <span class="pre">=</span> <span class="pre">Age,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">RawScore))</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geom-point-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">geom_point(alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>

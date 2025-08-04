@@ -181,8 +181,8 @@
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">02: Data Cleaning</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">02: Data Cleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_Python.html">Data Cleaning Using Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_cleaning_R.html">Data Cleaning Using R</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">03: Summary Statistics</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">03: Summary Statistics</a></li>
@@ -191,7 +191,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">04: Visualizations</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">You’ve Finished Exploratory Data Analysis!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_next_steps.html">Final Thoughts</a></li>
 </ul>
 
     </div>
@@ -450,7 +450,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-pandas-as-pd"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-pd-read-csv-data-compas-sample-new-csv"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv("../data/compas_sample_new.csv")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-pd-read-csv-data-compas-sample-new-csv"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv("data/compas_sample_new.csv")</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-scatterplot-x-df-age-y-df-rawscore-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">sns.scatterplot(x</span> <span class="pre">=</span> <span class="pre">df["Age"],</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">df["RawScore"],</span> <span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-scatter-age-vs-rawscore"><code class="docutils literal notranslate"><span class="pre">plt.title("Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore")</span></code></a></li>
@@ -518,14 +518,14 @@ document.write(`
     </td>
     <td style="vertical-align: top; text-align: left; width: 40%;">
    <!-- relative path to visualizations.png -->
-      <img src="../slides/visualizations.png" alt="data vis" width="1000" />
+      <img src="slides/visualizations.png" alt="data vis" width="1000" />
     </td>
   </tr>
 </table>
 <section id="by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before">
 <h3>By the end, you’ll be able to describe in plain language what each chart shows—how your data are distributed, where patterns emerge, and which factors appear linked—even if you’ve never worked with data before.<a class="headerlink" href="#by-the-end-youll-be-able-to-describe-in-plain-language-what-each-chart-showshow-your-data-are-distributed-where-patterns-emerge-and-which-factors-appear-linkedeven-if-youve-never-worked-with-data-before" title="Link to this heading">#</a></h3>
 <hr class="docutils" />
-<audio controls src="../audio/Visualization.m4a"></section>
+<audio controls src="audio/Visualization.m4a"></section>
 <hr class="docutils" />
 <section id="creating-key-charts">
 <h3>Creating Key Charts<a class="headerlink" href="#creating-key-charts" title="Link to this heading">#</a></h3>
@@ -549,7 +549,7 @@ The first visualization we will explore is the histogram. Here we’ll draw bars
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;RawScore&quot;</span><span class="p">],</span> <span class="n">binwidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Histogram of Raw Scores&quot;</span><span class="p">)</span>
@@ -712,7 +712,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_sample_new.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/compas_sample_new.csv&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>  
 <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
   <span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">],</span> 
@@ -732,7 +732,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_sample_new.csv&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/compas_sample_new.csv&quot;</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>  
 <span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>   <span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Age&quot;</span><span class="p">],</span> 
@@ -794,7 +794,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
 <span class="g g-Whitespace">    </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
 
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;../data/compas_sample_new.csv&#39;
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;data/compas_sample_new.csv&#39;
 </pre></div>
 </div>
 </div>
@@ -826,7 +826,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 </ul>
 </section>
 <section id="df-pd-read-csv-data-compas-sample-new-csv">
-<h4><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(&quot;../data/compas_sample_new.csv&quot;)</span></code><a class="headerlink" href="#df-pd-read-csv-data-compas-sample-new-csv" title="Link to this heading">#</a></h4>
+<h4><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv(&quot;data/compas_sample_new.csv&quot;)</span></code><a class="headerlink" href="#df-pd-read-csv-data-compas-sample-new-csv" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Reads your CSV file into a DataFrame called <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p></li>
 <li><p>Now <code class="docutils literal notranslate"><span class="pre">df</span></code> holds all your sample rows and columns for plotting.</p></li>
@@ -915,7 +915,7 @@ Plotting all 60,000+ data points would create a crowded chart and could actually
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># 1. Load your data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
 
 <span class="c1"># 2. Keep only numeric columns</span>
 <span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
@@ -950,7 +950,7 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>                <span class="c1"># for statistical visualizations</span>
 
 <span class="c1"># 2. Read in the filtered CSV</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
 
 <span class="c1"># 3. Select only numeric columns</span>
 <span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
@@ -975,9 +975,6 @@ We want to see how our key numeric variables (like Age, RawScore, DecileScore) m
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/9b08064f0feb7ee7b6c67c68c7ddaf3a1be25db6e6b1a5922f68e8fb5bcb0199.png" src="_images/9b08064f0feb7ee7b6c67c68c7ddaf3a1be25db6e6b1a5922f68e8fb5bcb0199.png" />
 </div>
 </div>
 </section>
@@ -1059,7 +1056,7 @@ Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each p
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <span class="c1"># 1. Load your data and numeric subset</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/compas_scores_raw.csv&quot;</span><span class="p">)</span>
 <span class="n">num_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s2">&quot;number&quot;</span><span class="p">)</span>
 
 <span class="c1"># 2. Draw the scatterplot matrix</span>
@@ -1073,9 +1070,6 @@ Next, we’ll draw a scatterplot matrix—a grid of scatter plots showing each p
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/2f4a0b8b73b6a02ed73c1cfcf77d509432b8b64bd6d2af4c67c56f1a155a5c17.png" src="_images/2f4a0b8b73b6a02ed73c1cfcf77d509432b8b64bd6d2af4c67c56f1a155a5c17.png" />
 </div>
 </div>
 <section id="id11">
@@ -1212,7 +1206,7 @@ Open spaces or extended tails highlight outliers or skew.</p></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matplotlib.pyplot</span> <span class="pre">as</span> <span class="pre">plt</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">seaborn</span> <span class="pre">as</span> <span class="pre">sns</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-pandas-as-pd"><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code></a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-pd-read-csv-data-compas-sample-new-csv"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv("../data/compas_sample_new.csv")</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#df-pd-read-csv-data-compas-sample-new-csv"><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv("data/compas_sample_new.csv")</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5"><code class="docutils literal notranslate"><span class="pre">plt.figure()</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sns-scatterplot-x-df-age-y-df-rawscore-alpha-0-3"><code class="docutils literal notranslate"><span class="pre">sns.scatterplot(x</span> <span class="pre">=</span> <span class="pre">df["Age"],</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">df["RawScore"],</span> <span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">0.3)</span></code></a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plt-title-scatter-age-vs-rawscore"><code class="docutils literal notranslate"><span class="pre">plt.title("Scatter:</span> <span class="pre">Age</span> <span class="pre">vs</span> <span class="pre">RawScore")</span></code></a></li>

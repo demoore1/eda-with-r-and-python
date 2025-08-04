@@ -39,7 +39,7 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-df = pd.read_csv("../data/compas_sample_new.csv")
+df = pd.read_csv("data/compas_sample_new.csv")
 plt.figure()  
 sns.scatterplot(
   x = df["Age"], 
@@ -59,7 +59,7 @@ plt.show()
 [36mCell[39m[36m [39m[32mIn[3][39m[32m, line 4[39m
 [32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mseaborn[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01msns[39;00m
 [32m      3[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mpd[39;00m
-[32m----> [39m[32m4[39m df = [43mpd[49m[43m.[49m[43mread_csv[49m[43m([49m[33;43m"[39;49m[33;43m../data/compas_sample_new.csv[39;49m[33;43m"[39;49m[43m)[49m
+[32m----> [39m[32m4[39m df = [43mpd[49m[43m.[49m[43mread_csv[49m[43m([49m[33;43m"[39;49m[33;43mdata/compas_sample_new.csv[39;49m[33;43m"[39;49m[43m)[49m
 [32m      5[39m plt.figure()  
 [32m      6[39m sns.scatterplot(
 [32m      7[39m   x = df[[33m"[39m[33mAge[39m[33m"[39m], 
@@ -121,5 +121,5 @@ plt.show()
 [32m    881[39m         [38;5;66;03m# Binary mode[39;00m
 [32m    882[39m         handle = [38;5;28mopen[39m(handle, ioargs.mode)
 
-[31mFileNotFoundError[39m: [Errno 2] No such file or directory: '../data/compas_sample_new.csv'
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: 'data/compas_sample_new.csv'
 
