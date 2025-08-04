@@ -10,20 +10,20 @@ chapters:
   - file: Data Cleaning
     title: Data Cleaning 
   - file: 02_data_cleaning_Python
-    title: Python  Demo
+    title: Python  Demo - Data Cleaning
   - file: 02_data_cleaning_R
-    title: R Demo
+    title: R Demo - Data Cleaning
   - file: summary statistics
     title: Summary Statistics
   - file: 03_summary_statistics_Python
-    title: Python Demo
+    title: Python Demo - Summary Statistics
   - file: 03_summary_statistics_R
-    title: R Demo
+    title: R Demo - Summary Statistics
   - file: Visualizations
     title: EDA Visualizations
   - file: 04_visualizations_Python
-    title: Python Demo
+    title: Python Demo - Visualizations
   - file: 04_visualizations_R
-    title: R Demo
+    title: R Demo - Visualizations
   - file: 06_next_steps
     title: Final Thoughts
