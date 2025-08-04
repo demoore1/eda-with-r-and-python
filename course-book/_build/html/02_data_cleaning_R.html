@@ -195,8 +195,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="summary%20statistics.html">Summary Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">Python Demo - Summary Statistics</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_Python.html">Python Demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_summary_statistics_R.html">R Demo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Visualizations.html">EDA Visualizations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="04_visualizations_Python.html">Python Demo - Visualizations</a></li>
@@ -207,6 +206,7 @@
 
 
 <li class="toctree-l1"><a class="reference internal" href="04_visualizations_R.html">R Demo - Visualizations</a></li>
+
 
 
 
@@ -563,7 +563,7 @@ document.write(`
 &quot;package &#39;lubridate&#39; was built under R version 4.4.3&quot;
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Attaching core tidyverse packages</span> ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">dplyr    </span> 1.1.4     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">readr    </span> 2.1.5
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">forcats  </span> 1.0.0     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">stringr  </span> 1.5.1
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">ggplot2  </span> 3.5.1     <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">tibble   </span> 3.2.1
@@ -571,7 +571,7 @@ document.write(`
 <span class=" -Color -Color-Green">✔</span> <span class=" -Color -Color-Blue">purrr    </span> 1.0.4     
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>── <span class=" -Color -Color-Bold">Conflicts</span> ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">filter()</span> masks <span class=" -Color -Color-Blue">stats</span>::filter()
 <span class=" -Color -Color-Red">✖</span> <span class=" -Color -Color-Blue">dplyr</span>::<span class=" -Color -Color-Green">lag()</span>    masks <span class=" -Color -Color-Blue">stats</span>::lag()
 <span class=" -Color -Color-Cyan">ℹ</span> Use the conflicted package (<span class=" -Color -Color-Blue">&lt;http://conflicted.r-lib.org/&gt;</span>) to force all conflicts to become errors
@@ -617,7 +617,7 @@ document.write(`
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Rows: </span><span class=" -Color -Color-Blue">24272</span> <span class=" -Color -Color-Bold">Columns: </span><span class=" -Color -Color-Blue">24</span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">──</span> <span class=" -Color -Color-Bold">Column specification</span> <span class=" -Color -Color-Cyan">────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────</span>
 <span class=" -Color -Color-Bold">Delimiter:</span> &quot;,&quot;
 <span class=" -Color -Color-Red">chr</span> (15): Agency_Text, LastName, FirstName, MiddleName, Sex_Code_Text, Ethni...
 <span class=" -Color -Color-Green">dbl</span>  (9): Person_ID, AssessmentID, Case_ID, ScaleSet_ID, RecSupervisionLevel...
@@ -1172,10 +1172,10 @@ A clear transformation log makes your work reproducible and lets others (or futu
 <h1>Next Steps: Continue in R or Switch to Python<a class="headerlink" href="#next-steps-continue-in-r-or-switch-to-python" title="Link to this heading">#</a></h1>
 <p>Our data is now clean and properly formatted. You have two options:</p>
 <ol class="arabic simple">
-<li><p><strong>Try the Python version</strong> of this cleaning workflow by opening <code class="docutils literal notranslate"><span class="pre">02_data_cleaning_Python.ipynb</span></code>.</p></li>
-<li><p><strong>Move on to summary statistics in R</strong> by opening <code class="docutils literal notranslate"><span class="pre">03_summary_statistics_R.ipynb</span></code>.</p></li>
+<li><p><strong>Try the Python version</strong> of this cleaning workflow.</p></li>
+<li><p><strong>Move on to Summary Statistics</strong>.</p></li>
 </ol>
-<p>Choose the notebook that matches your preferred language, and let’s continue exploring our recidivism dataset!</p>
+<p>Choose the path that matches your preferred language, and let’s continue exploring our recidivism dataset!</p>
 </section>
 
     <script type="text/x-thebe-config">
