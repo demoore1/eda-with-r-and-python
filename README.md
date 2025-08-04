@@ -1,4 +1,4 @@
-[![Launch Course](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/demoore1/eda-with-r-and-python/HEAD?urlpath=lab/tree/course-book/index.ipynb)
+[![Launch Course](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/demoore1/eda-with-r-and-python/HEAD?urlpath=lab/tree/notebooks/01_introduction.ipynb)
 
 
 
